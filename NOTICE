@@ -1,0 +1,16 @@
+cro-lens
+Copyright (c) 2026 Berke Akyıldız — MIT License (see LICENSE)
+
+cro-lens depends on third-party Python packages under their own licences,
+installed by uv from PyPI and listed in pyproject.toml and uv.lock. None of
+them is modified or bundled in this repository.
+
+Fonts (SIL Open Font License 1.1; the licence text and copyright lines ship next
+to the files in src/cro_lens/web/static/fonts/OFL.txt):
+- Source Serif 4 — https://github.com/adobe-fonts/source-serif
+- Inter Tight — https://github.com/rsms/inter-tight
+- JetBrains Mono — https://github.com/JetBrains/JetBrainsMono
+
+The example reports in examples/ quote short passages of public landing pages
+and include small crops of them, as the evidence for each finding. The pages
+belong to their owners; the quotes are there to show what the tool checked.

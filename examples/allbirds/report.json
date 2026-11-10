@@ -1,0 +1,998 @@
+{
+  "schema_version": "report@1",
+  "run": {
+    "id": "20261110-210614-www-allbirds-com",
+    "url": "https://www.allbirds.com/",
+    "final_url": "https://www.allbirds.com/",
+    "started_at": "2026-11-10T18:06:15+00:00",
+    "finished_at": "2026-11-10T18:10:28+00:00",
+    "provider": "claude-code",
+    "model": "sonnet",
+    "given": {
+      "audience": null,
+      "traffic": null,
+      "goal": null
+    }
+  },
+  "capture": {
+    "url": "https://www.allbirds.com/",
+    "final_url": "https://www.allbirds.com/",
+    "status_code": 200,
+    "title": "Allbirds: Comfortable, Sustainable Shoes & Apparel",
+    "captured_at": "2026-11-10T18:07:15+00:00",
+    "consent_banner": {
+      "present": false,
+      "dismissed": false
+    },
+    "speed": {
+      "source": "lab: one local Playwright visit (mobile emulation)",
+      "ttfb_ms": 198.29999995231628,
+      "dcl_ms": 1244.0999999046326,
+      "load_ms": 2474.5999999046326,
+      "lcp_ms": 24592.0,
+      "cls": 0.0,
+      "requests": 519,
+      "transfer_bytes_min": 5380255,
+      "psi": null
+    },
+    "viewports": {
+      "desktop": {
+        "height": 3662,
+        "blocks": 159,
+        "tiles_sent": 3,
+        "truncated": false
+      },
+      "mobile": {
+        "height": 4447,
+        "blocks": 139,
+        "tiles_sent": 4,
+        "truncated": true
+      }
+    }
+  },
+  "understanding": {
+    "audience": {
+      "value": "Consumer shoppers in the US (men and women) buying comfortable, sustainable casual shoes, socks and apparel for themselves or as holiday gifts, drawn by Black Friday and holiday sale pricing.",
+      "confidence": "medium",
+      "evidence": [
+        "D2",
+        "D21",
+        "D22",
+        "D23",
+        "D157",
+        "D1"
+      ],
+      "source": "inferred"
+    },
+    "job_to_be_done": {
+      "value": "When I want a comfortable pair of shoes and the holiday sales are on, I want to find a men's or women's style at a big discount quickly, so I can get comfortable shoes (or a gift) without overpaying.",
+      "confidence": "medium",
+      "evidence": [
+        "D2",
+        "D20",
+        "D21",
+        "D22",
+        "D23",
+        "D18",
+        "D19"
+      ]
+    },
+    "traffic_source": {
+      "value": "Mostly direct/brand traffic, plus brand search and email or paid retargeting for the Black Friday sale. Signals: full site navigation, a brand-led page title, a country selector and a seasonal sale banner. There is no keyword-led H1 and no single-offer focus.",
+      "confidence": "medium",
+      "evidence": [
+        "D5",
+        "D6",
+        "D2",
+        "D21",
+        "D156"
+      ],
+      "source": "inferred"
+    },
+    "awareness_level": {
+      "value": "product_aware",
+      "confidence": "medium",
+      "evidence": [
+        "D21",
+        "D20",
+        "D2",
+        "D157"
+      ]
+    },
+    "promise": {
+      "value": "Allbirds makes the world's most comfortable shoe, and the holiday sale is the time to buy it: up to 70% off for a 'comfiest season'.",
+      "evidence": [
+        "D21",
+        "D20",
+        "D157",
+        "D2"
+      ]
+    },
+    "offer": {
+      "value": "Black Friday early access with up to 70% off select styles, plus free ground shipping on orders over $100. The first screen links to Shop Men and Shop Women.",
+      "evidence": [
+        "D2",
+        "D20",
+        "D1",
+        "D12",
+        "D22",
+        "D23"
+      ]
+    },
+    "five_second": {
+      "understood": "A 'Where are we shipping to?' modal covers the screen. Behind it, a shoe brand (Allbirds) shows a couple on a sofa at Christmas, a sale headline and Shop Men/Shop Women buttons. A visitor would see a shipping-country prompt first, then a holiday sale at a shoe brand. The headline is partly dimmed and the product is barely visible. The sale is clear, but what the product is and why it matters is not.",
+      "clear": false,
+      "specific": false,
+      "quote": "Our biggest sale. Your comfiest season. | EARLY ACCESS · UP TO 70% OFF | Where are we shipping to? | Purchasing from your country's website is the best way to connect your feet to the world's most comfortable shoe.",
+      "evidence": [
+        "D21",
+        "D20",
+        "D156",
+        "D157",
+        "D2"
+      ]
+    }
+  },
+  "lift": [
+    {
+      "factor": "value_proposition",
+      "score": 3,
+      "reason": "Sale depth (up to 70%) and a comfort claim exist, but the hero gives no concrete product benefit, and the 'biggest sale' is not backed by visible discounts: most best-seller cards show full price.",
+      "evidence": [
+        "D21",
+        "D20",
+        "D38",
+        "D44"
+      ]
+    },
+    {
+      "factor": "relevance",
+      "score": 3,
+      "reason": "For a visitor arriving for the Black Friday sale, the banner and hero match. But the shipping modal and the generic category tiles do not take them to sale items.",
+      "evidence": [
+        "D2",
+        "D21",
+        "D156",
+        "D5"
+      ]
+    },
+    {
+      "factor": "clarity",
+      "score": 2,
+      "reason": "A country modal covers the hero on both viewports. The H1 is a slogan with no product named. Several identical SHOP MEN / SHOP WOMEN buttons repeat, so the next step is split.",
+      "evidence": [
+        "D156",
+        "D21",
+        "D22",
+        "M136"
+      ]
+    },
+    {
+      "factor": "anxiety",
+      "score": 2,
+      "reason": "No reviews, ratings, return window or guarantee appear on the page. The only returns signal is a footer link, while some items are tagged FINAL SALE with no explanation.",
+      "evidence": [
+        "D124",
+        "D63",
+        "D149",
+        "D75"
+      ]
+    },
+    {
+      "factor": "distraction",
+      "score": 2,
+      "reason": "A blocking modal sits over the hero. Beyond that there are many repeated category CTAs, a carousel of near-identical slip-ons, and a link-heavy footer.",
+      "evidence": [
+        "D156",
+        "D159",
+        "D25",
+        "D104"
+      ]
+    },
+    {
+      "factor": "urgency",
+      "score": 3,
+      "reason": "'Early Access' and 'Up to 70% off' give a seasonal reason to act, but there is no end date or countdown.",
+      "evidence": [
+        "D2",
+        "D20",
+        "D21"
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "persona": "skeptical_first_timer",
+      "stalls": [
+        {
+          "block_id": "D156",
+          "why": "A modal about shipping country is the first thing they see, before they know what the brand sells."
+        },
+        {
+          "block_id": "D21",
+          "why": "The slogan names no product, material or reason to believe the 'comfiest' claim."
+        },
+        {
+          "block_id": "D117",
+          "why": "The only substantive claims sit far down, and they have no proof, such as reviews or press."
+        }
+      ],
+      "objections": [
+        {
+          "objection": "What exactly is this and is it for me?",
+          "status": "partial"
+        },
+        {
+          "objection": "Is the brand real and trusted (reviews, ratings)?",
+          "status": "absent"
+        },
+        {
+          "objection": "Is the 'most comfortable' claim true?",
+          "status": "absent"
+        }
+      ]
+    },
+    {
+      "persona": "comparison_shopper",
+      "stalls": [
+        {
+          "block_id": "D113",
+          "why": "The copy says 'wildly comfortable' but gives no specifics (materials, cushioning, weight) to compare with rivals."
+        },
+        {
+          "block_id": "D38",
+          "why": "Several cards show full price with no discount, so the real deal is unclear."
+        },
+        {
+          "block_id": "D117",
+          "why": "Materials are described vaguely ('wool, tree fiber, sugarcane') with no link to specific products."
+        }
+      ],
+      "objections": [
+        {
+          "objection": "How is this different from other comfort shoe brands?",
+          "status": "partial"
+        },
+        {
+          "objection": "What is the real discount and which styles are included?",
+          "status": "partial"
+        },
+        {
+          "objection": "Independent reviews or ratings?",
+          "status": "absent"
+        }
+      ]
+    },
+    {
+      "persona": "ready_to_buy",
+      "stalls": [
+        {
+          "block_id": "D159",
+          "why": "They must confirm a country before doing anything."
+        },
+        {
+          "block_id": "D22",
+          "why": "The hero CTAs go to broad Men or Women collections, not to the sale items."
+        },
+        {
+          "block_id": "D39",
+          "why": "QUICK ADD on a card shows no size information on desktop, so it is unclear what happens on click."
+        }
+      ],
+      "objections": [
+        {
+          "objection": "Shipping cost and threshold",
+          "status": "answered"
+        },
+        {
+          "objection": "Returns on sale items",
+          "status": "partial"
+        },
+        {
+          "objection": "Sale end date",
+          "status": "absent"
+        }
+      ]
+    },
+    {
+      "persona": "mobile_skimmer",
+      "stalls": [
+        {
+          "block_id": "M136",
+          "why": "The modal fills most of the first mobile screen and hides the hero headline."
+        },
+        {
+          "block_id": "M19",
+          "why": "After dismissal, they meet a stack of repeated Shop Men/Shop Women pairs."
+        },
+        {
+          "block_id": "M106",
+          "why": "The page is long, with image-led tiles before any benefit text appears."
+        }
+      ],
+      "objections": [
+        {
+          "objection": "Will the page load fast?",
+          "status": "absent"
+        },
+        {
+          "objection": "Is the first screen clear?",
+          "status": "absent"
+        }
+      ]
+    },
+    {
+      "persona": "risk_averse_evaluator",
+      "stalls": [
+        {
+          "block_id": "D124",
+          "why": "Returns information is only a footer link, with no stated window or terms."
+        },
+        {
+          "block_id": "D63",
+          "why": "'FINAL SALE' implies no returns but nothing explains the policy."
+        },
+        {
+          "block_id": "D149",
+          "why": "Refund, privacy and shipping policies are footer links only, not shown at decision points."
+        }
+      ],
+      "objections": [
+        {
+          "objection": "Return or refund policy",
+          "status": "partial"
+        },
+        {
+          "objection": "Legitimacy of the company",
+          "status": "partial"
+        },
+        {
+          "objection": "Data handling",
+          "status": "partial"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "category": "visual_hierarchy_distraction",
+      "kind": "issue",
+      "title": "The 'Where are we shipping to?' modal blocks the hero and its CTAs on first load, on desktop and mobile",
+      "personas": [
+        "skeptical_first_timer",
+        "mobile_skimmer",
+        "ready_to_buy"
+      ],
+      "severity": "high",
+      "reasoning": "Nearly every visitor, including those arriving for the sale, must deal with a country-confirmation step before seeing the offer. On mobile the modal covers most of the first screen and the hero headline. The default is United States, so most visitors gain nothing from the interruption.",
+      "evidence": [
+        {
+          "block_id": "D156",
+          "viewport": "desktop",
+          "quote": "Where are we shipping to?",
+          "crop": "crops/F1-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "M136",
+          "viewport": "mobile",
+          "quote": "Where are we shipping to?",
+          "crop": "crops/F1-2.png",
+          "valid": true
+        },
+        {
+          "block_id": "D159",
+          "viewport": "desktop",
+          "quote": "CONFIRM",
+          "crop": "crops/F1-3.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "kept",
+        "reason": "Both screenshots show the 'Where are we shipping to?' modal covering the hero and its CTAs on first load, and on mobile it hides the headline, with United States preselected."
+      }
+    },
+    {
+      "id": "F2",
+      "category": "mobile_speed_access",
+      "kind": "issue",
+      "title": "Mobile lab LCP is about 24.6 s with 519 requests, so the hero may take a long time to render",
+      "personas": [
+        "mobile_skimmer",
+        "ready_to_buy"
+      ],
+      "severity": "high",
+      "reasoning": "The lab number comes from one local visit with mobile emulation. Even if real users see less, a slow largest element on a page whose first impression depends on a hero image risks early exits. The metric has no block of its own, so it is anchored to the mobile hero H1.",
+      "evidence": [
+        {
+          "block_id": "M18",
+          "viewport": "mobile",
+          "quote": "Our biggest sale. Your comfiest season.",
+          "crop": "crops/F2-1.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "flagged",
+        "reason": "The 24.6s lab LCP and 519 requests can't be checked from the screenshots, and the evidence is just the hero H1 text (the crop shows the CONFIRM button), so the claim rests on one emulated visit."
+      }
+    },
+    {
+      "id": "F3",
+      "category": "social_proof",
+      "kind": "absence",
+      "title": "No customer reviews, ratings or press proof appear next to the product cards or hero",
+      "personas": [
+        "skeptical_first_timer",
+        "comparison_shopper",
+        "risk_averse_evaluator"
+      ],
+      "severity": "high",
+      "reasoning": "The page claims 'the world's most comfortable shoe' and 'wildly comfortable' but offers no ratings, review counts or testimonials. Product cards show only name, colour and price. A visitor who doesn't know the brand has nothing to back the claim.",
+      "evidence": [
+        {
+          "block_id": "D113",
+          "viewport": "desktop",
+          "quote": "Lightweight, bouncy, and wildly comfortable",
+          "crop": "crops/F3-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D157",
+          "viewport": "desktop",
+          "quote": "the world's most comfortable shoe",
+          "crop": "crops/F3-2.png",
+          "valid": true
+        },
+        {
+          "block_id": "D38",
+          "viewport": "desktop",
+          "quote": "$100",
+          "crop": null,
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "flagged",
+        "reason": "The text blocks show no ratings or reviews near the hero or product cards, but only the first screen and text list were seen, so reviews may exist in image-based or unlisted widgets, and the cited quotes only show the claims being made."
+      }
+    },
+    {
+      "id": "F4",
+      "category": "trust_risk",
+      "kind": "absence",
+      "title": "'FINAL SALE' badges appear on sale products with no explanation of the returns policy, and returns are only a footer link",
+      "personas": [
+        "risk_averse_evaluator",
+        "ready_to_buy",
+        "skeptical_first_timer"
+      ],
+      "severity": "high",
+      "reasoning": "The discounted items carry a 'FINAL SALE' tag, which signals no returns, and the page doesn't say what that means. For shoes, where fit matters, this is a real purchase risk. No return window or guarantee is shown near the cards or hero.",
+      "evidence": [
+        {
+          "block_id": "D63",
+          "viewport": "desktop",
+          "quote": "FINAL SALE",
+          "crop": "crops/F4-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D124",
+          "viewport": "desktop",
+          "quote": "Returns/Exchanges",
+          "crop": "crops/F4-2.png",
+          "valid": true
+        },
+        {
+          "block_id": "M49",
+          "viewport": "mobile",
+          "quote": "FINAL SALE",
+          "crop": "crops/F4-3.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "kept",
+        "reason": "D63 and M49 show FINAL SALE badges on cards, and the only returns reference is the footer link D124, so the trust-risk reasoning for shoes is specific to this page."
+      }
+    },
+    {
+      "id": "F5",
+      "category": "value_prop_clarity",
+      "kind": "issue",
+      "title": "The H1 'Our biggest sale. Your comfiest season.' is a slogan that names no product or benefit, and the 70% claim is in a small kicker qualified by 'select styles'",
+      "personas": [
+        "skeptical_first_timer",
+        "comparison_shopper"
+      ],
+      "severity": "medium",
+      "reasoning": "A first-time visitor sees a sale for an unnamed product. The discount depth sits in a small line above the H1, and the banner limits it to select styles, so the visitor can't tell which products are discounted.",
+      "evidence": [
+        {
+          "block_id": "D21",
+          "viewport": "desktop",
+          "quote": "Our biggest sale. Your comfiest season.",
+          "crop": "crops/F5-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D20",
+          "viewport": "desktop",
+          "quote": "EARLY ACCESS · UP TO 70% OFF",
+          "crop": "crops/F5-2.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "flagged",
+        "reason": "The H1 is a slogan and the 70% line is a small kicker (visible in the desktop hero), but the page does name the sale and the banner says 'select styles', so how much this hurts is subjective."
+      }
+    },
+    {
+      "id": "F6",
+      "category": "cta",
+      "kind": "issue",
+      "title": "Hero and tile CTAs are split into repeated SHOP MEN / SHOP WOMEN pairs, and none leads directly to the sale",
+      "personas": [
+        "ready_to_buy",
+        "mobile_skimmer",
+        "comparison_shopper"
+      ],
+      "severity": "medium",
+      "reasoning": "The hero promises up to 70% off but its buttons are generic Men/Women labels. Further tiles repeat the same pair, so a visitor can't tell which button goes to sale items. Sale-specific links such as 'SHOP WOMEN'S SALE' are only in the menu panel.",
+      "evidence": [
+        {
+          "block_id": "D22",
+          "viewport": "desktop",
+          "quote": "SHOP MEN",
+          "crop": "crops/F6-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "M104",
+          "viewport": "mobile",
+          "quote": "SHOP MEN",
+          "crop": "crops/F6-2.png",
+          "valid": true
+        },
+        {
+          "block_id": "D18",
+          "viewport": "desktop",
+          "quote": "SHOP WOMEN'S SALE",
+          "crop": null,
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "flagged",
+        "reason": "The hero buttons are plain SHOP MEN and SHOP WOMEN, but the hero is a sale and those buttons likely lead to sale-relevant pages, and whether the sale links sit only in the menu is an assumption."
+      }
+    },
+    {
+      "id": "F7",
+      "category": "offer",
+      "kind": "issue",
+      "title": "Best Sellers shows mostly full-price items and 30% discounts, which undercuts the 'up to 70% off' hero promise",
+      "personas": [
+        "comparison_shopper",
+        "ready_to_buy"
+      ],
+      "severity": "medium",
+      "reasoning": "The visible discounts are $75 to $52.50 and $105 to $73.50, both 30%. Other cards show $100 or $105 with no discount. A visitor expecting deep savings sees none, and no copy explains which styles reach 70%.",
+      "evidence": [
+        {
+          "block_id": "D79",
+          "viewport": "desktop",
+          "quote": "$73.50 $105",
+          "crop": "crops/F7-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D44",
+          "viewport": "desktop",
+          "quote": "$105",
+          "crop": null,
+          "valid": true
+        },
+        {
+          "block_id": "D20",
+          "viewport": "desktop",
+          "quote": "UP TO 70% OFF",
+          "crop": "crops/F7-3.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "flagged",
+        "reason": "D79 and D44 show 30% discounts and full-price items, but 'up to 70%' is not contradicted by 30% items and the best sellers section may not be where the deep discounts sit."
+      }
+    },
+    {
+      "id": "F8",
+      "category": "offer",
+      "kind": "absence",
+      "title": "The 'Early Access' sale has no end date or deadline in the banner or hero",
+      "personas": [
+        "ready_to_buy",
+        "comparison_shopper"
+      ],
+      "severity": "low",
+      "reasoning": "The sale gives a reason to act, but with no deadline the visitor can postpone the decision. No date, countdown or stock cue appears in the banner or hero.",
+      "evidence": [
+        {
+          "block_id": "D2",
+          "viewport": "desktop",
+          "quote": "Black Friday Early Access. Up to 70% off select styles.",
+          "crop": "crops/F8-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D20",
+          "viewport": "desktop",
+          "quote": "EARLY ACCESS · UP TO 70% OFF",
+          "crop": "crops/F8-2.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "flagged",
+        "reason": "D2 and D20 show no deadline text, but the finding is low-impact and the end date may be in unseen terms or elsewhere on the site."
+      }
+    },
+    {
+      "id": "F9",
+      "category": "specificity",
+      "kind": "issue",
+      "title": "The benefit copy ('wildly comfortable', 'better for the planet—win, win, win') is generic and sits near the footer with no product specifics",
+      "personas": [
+        "comparison_shopper",
+        "skeptical_first_timer"
+      ],
+      "severity": "medium",
+      "reasoning": "The only explanatory copy is three short paragraphs just above the footer. They have no figures, per-product materials or comparison, so they give a shopper nothing to weigh against rivals.",
+      "evidence": [
+        {
+          "block_id": "D117",
+          "viewport": "desktop",
+          "quote": "better for the planet—win, win, win",
+          "crop": "crops/F9-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D115",
+          "viewport": "desktop",
+          "quote": "Easy-to-wear styles made for daily routines, weekend plans, travel, and everything in between.",
+          "crop": "crops/F9-2.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "flagged",
+        "reason": "D115 and D117 are generic copy near the footer as claimed, but D117 does name wool, tree fiber and sugarcane, and this is a subjective copy critique on a category page where product specifics sit on product pages."
+      }
+    }
+  ],
+  "unverifiable": [
+    {
+      "what": "Traffic source",
+      "why": "No source was given, and none can be seen from the page.",
+      "assumption": "Mostly direct, brand search and email/retargeting traffic for the Black Friday sale."
+    },
+    {
+      "what": "Real page speed",
+      "why": "The lab numbers come from one local visit with mobile emulation. The 24.6 s LCP may be inflated by the capture environment.",
+      "assumption": "Real users see a faster but still heavy page, given 519 requests."
+    },
+    {
+      "what": "Content after the last mobile tile",
+      "why": "The mobile screenshots stop at y=3376 of 4447px.",
+      "assumption": "The remainder is the footer, as on desktop."
+    },
+    {
+      "what": "Product pages, checkout and Final Sale policy",
+      "why": "They sit behind links and were not captured.",
+      "assumption": "Reviews and the returns policy may appear on product pages but not on this page."
+    },
+    {
+      "what": "Hidden menu and cart content",
+      "why": "The cart and menu text exists in the DOM but is not visible in the screenshots.",
+      "assumption": "Both are closed by default and reachable only by interaction."
+    },
+    {
+      "what": "Whether the modal appears for all visitors",
+      "why": "It may depend on geolocation or cookies and may not show to returning visitors.",
+      "assumption": "It shows to first-time visitors, as captured."
+    }
+  ],
+  "experiments": [
+    {
+      "id": "X1",
+      "finding_id": "F6",
+      "hypothesis": "If we change the hero buttons \"SHOP MEN\" and \"SHOP WOMEN\" to \"SHOP MEN'S SALE\" and \"SHOP WOMEN'S SALE\" linking straight to the discounted collections, then hero CTA click-through to sale pages will increase for ready-to-buy and mobile visitors, because the hero promises up to 70% off but its buttons are generic and the sale links only exist in the menu panel.",
+      "change": {
+        "from": "Hero buttons \"SHOP MEN\" / \"SHOP WOMEN\" (the same pair repeats in later tiles)",
+        "to": "Hero buttons labelled and linked to the sale collections; later tiles keep the generic pair."
+      },
+      "suggested_copy": "SHOP MEN'S SALE | SHOP WOMEN'S SALE",
+      "primary_metric": "hero CTA click-through to sale collection pages",
+      "guardrail_metric": "revenue per session (to avoid sending people to thinner sale ranges)",
+      "feasibility": "ab_ok",
+      "ice": {
+        "impact": 7,
+        "confidence": 5,
+        "ease": 9,
+        "score": 7.0,
+        "rationale": {
+          "impact": "Shortens the path from the sale promise to discounted products for the main buyer.",
+          "confidence": "base 3; +1 matches weak LIFT factor (clarity); +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Button text and link change in the CMS."
+        }
+      },
+      "flagged": true
+    },
+    {
+      "id": "X2",
+      "finding_id": "F1",
+      "hypothesis": "If we change the blocking \"Where are we shipping to?\" modal (with its CONFIRM button) to a non-blocking slim top bar that preselects United States and only asks visitors detected outside the US to switch, then hero CTA click-through will increase for first-time and mobile visitors arriving for the Black Friday sale, because the modal covers the hero headline and the Shop Men/Shop Women buttons on both viewports and United States is already the default for most of them.",
+      "change": {
+        "from": "Full modal on first load: \"Where are we shipping to?\" / \"Purchasing from your country's website is the best way to connect your feet to the world's most comfortable shoe.\" / CONFIRM",
+        "to": "No modal for visitors geolocated to the US; a one-line dismissible bar under the sale banner. Non-US visitors still get the modal."
+      },
+      "suggested_copy": "Shipping to United States. Change country",
+      "primary_metric": "hero CTA click-through (Shop Men / Shop Women)",
+      "guardrail_metric": "wrong-country orders / checkout country-mismatch rate",
+      "feasibility": "ab_ok",
+      "ice": {
+        "impact": 9,
+        "confidence": 6,
+        "ease": 5,
+        "score": 6.67,
+        "rationale": {
+          "impact": "The modal hides the offer and the CTAs for nearly every visitor on first load, so it gates conversion for the main persona.",
+          "confidence": "base 3; +1 evidence verified and kept by self-check; +1 matches weak LIFT factor (clarity, distraction); +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Needs a dev change to geo-detection and the modal logic, but no new content."
+        }
+      },
+      "flagged": false
+    },
+    {
+      "id": "X3",
+      "finding_id": "F4",
+      "hypothesis": "If we change the bare \"FINAL SALE\" badges (with returns only in the footer link \"Returns/Exchanges\") to a badge with a short tooltip plus a returns line under the hero and Best Sellers heading, then product-click and add-to-cart rate will increase for risk-averse and ready-to-buy shoppers, because shoes depend on fit and \"FINAL SALE\" signals no returns without saying what it means.",
+      "change": {
+        "from": "\"FINAL SALE\" badge on cards; returns only in the footer link \"Returns/Exchanges\"",
+        "to": "Badge with tooltip explaining the terms, and a returns reassurance line above the product grid. Use the real policy only."
+      },
+      "suggested_copy": "Final sale: this style can't be returned or exchanged. All other styles: free returns within [X] days. See full policy.",
+      "primary_metric": "add-to-cart rate on sale product cards",
+      "guardrail_metric": "return rate / customer-service contacts about returns",
+      "feasibility": "ab_ok",
+      "ice": {
+        "impact": 7,
+        "confidence": 6,
+        "ease": 7,
+        "score": 6.67,
+        "rationale": {
+          "impact": "Fit risk on shoes is a real purchase blocker for the main buyer, and clearer terms help sale-price buyers.",
+          "confidence": "base 3; +1 evidence verified and kept by self-check; +1 matches weak LIFT factor (anxiety); +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Copy plus a small tooltip and a line in the layout; the policy facts must be confirmed with the business."
+        }
+      },
+      "flagged": false
+    },
+    {
+      "id": "X4",
+      "finding_id": "F5",
+      "hypothesis": "If we change the H1 \"Our biggest sale. Your comfiest season.\" and the small kicker \"EARLY ACCESS · UP TO 70% OFF\" to an H1 that leads with the discount and names the product, then hero CTA click-through will increase for first-time and comparison shoppers, because today the 70% claim sits in a small line above a slogan that names no product and is qualified by \"select styles\".",
+      "change": {
+        "from": "Kicker \"EARLY ACCESS · UP TO 70% OFF\" above H1 \"Our biggest sale. Your comfiest season.\"",
+        "to": "Large H1 with the discount and the product; kicker keeps the early-access cue."
+      },
+      "suggested_copy": "Up to 70% off the world's most comfortable shoes. Early access to our biggest sale.",
+      "primary_metric": "hero CTA click-through",
+      "guardrail_metric": "bounce rate",
+      "feasibility": "ab_ok",
+      "ice": {
+        "impact": 6,
+        "confidence": 5,
+        "ease": 9,
+        "score": 6.67,
+        "rationale": {
+          "impact": "Makes the offer and product clear in the first seconds, though the hero is already readable for sale-aware visitors.",
+          "confidence": "base 3; +1 matches weak LIFT factor (clarity); +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Headline text change in the CMS."
+        }
+      },
+      "flagged": true
+    },
+    {
+      "id": "X5",
+      "finding_id": "F3",
+      "hypothesis": "If we change the product cards and hero (name, colour and price only) to show a star rating with review count and a one-line review quote beneath the hero, then add-to-cart or product-click rate will increase for first-time and comparison shoppers, because the page claims \"the world's most comfortable shoe\" with no ratings or testimonials to back it up.",
+      "change": {
+        "from": "Cards show only name, colour and price; the claim \"the world's most comfortable shoe\" has no proof beside it",
+        "to": "Star rating and review count on each Best Seller card, plus a proof strip under the hero with an aggregate rating and one customer quote"
+      },
+      "suggested_copy": "Rated [X.X]/5 by [N] verified shoppers. \"Honestly the comfiest shoes I own.\" (replace with a real, verified review)",
+      "primary_metric": "product card click-through rate",
+      "guardrail_metric": "page load time (review widget weight)",
+      "feasibility": "ab_ok",
+      "ice": {
+        "impact": 7,
+        "confidence": 5,
+        "ease": 5,
+        "score": 5.67,
+        "rationale": {
+          "impact": "Removes the main doubt for visitors who don't know the brand. The finding is flagged because reviews may exist in widgets not seen.",
+          "confidence": "base 3; +1 matches weak LIFT factor (anxiety); +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Needs a review data feed or widget and new design; real review data must exist (check that reviews are not already present)."
+        }
+      },
+      "flagged": true
+    },
+    {
+      "id": "X6",
+      "finding_id": "F7",
+      "hypothesis": "If we change the Best Sellers heading (cards mostly at full price or 30% off, e.g. \"$73.50 $105\") to a section that leads with the deepest-discount styles and a visible percent-off badge, then product-click rate will increase for comparison shoppers and ready-to-buy visitors, because the visible discounts don't match the \"UP TO 70% OFF\" hero promise and no copy says which styles reach 70%.",
+      "change": {
+        "from": "Best Sellers grid with mixed full-price and 30%-off cards and no discount badges",
+        "to": "A \"Biggest savings\" row first, with a percent-off badge on every discounted card"
+      },
+      "suggested_copy": "Biggest savings: up to 70% off",
+      "primary_metric": "product card click-through rate",
+      "guardrail_metric": "average order value",
+      "feasibility": "ab_ok",
+      "ice": {
+        "impact": 6,
+        "confidence": 4,
+        "ease": 6,
+        "score": 5.33,
+        "rationale": {
+          "impact": "Aligns what shoppers see with what the hero promises. The finding is flagged because deep discounts may sit elsewhere.",
+          "confidence": "base 3; +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Merchandising and layout change; need to know which styles carry the deepest cuts."
+        }
+      },
+      "flagged": true
+    },
+    {
+      "id": "X7",
+      "finding_id": "F8",
+      "hypothesis": "If we change the banner \"Black Friday Early Access. Up to 70% off select styles.\" to include an end date, then hero CTA click-through will increase for ready-to-buy and comparison shoppers, because with no deadline in the banner or hero they can postpone the decision.",
+      "change": {
+        "from": "\"Black Friday Early Access. Up to 70% off select styles.\"",
+        "to": "Same banner with a real end date"
+      },
+      "suggested_copy": "Black Friday Early Access ends [date]. Up to 70% off select styles.",
+      "primary_metric": "hero CTA click-through",
+      "guardrail_metric": "conversion rate after the sale ends (pull-forward) and bounce rate",
+      "feasibility": "bold_change_only",
+      "ice": {
+        "impact": 3,
+        "confidence": 4,
+        "ease": 9,
+        "score": 5.33,
+        "rationale": {
+          "impact": "Adds urgency for a secondary lever; the sale already gives a seasonal reason to act, and only a real date may be used.",
+          "confidence": "base 3; +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Banner text in the CMS, once the business confirms the date."
+        }
+      },
+      "flagged": true
+    },
+    {
+      "id": "X8",
+      "finding_id": "F9",
+      "hypothesis": "If we change the three generic paragraphs near the footer (\"Lightweight, bouncy, and wildly comfortable\", \"better for the planet—win, win, win\") to a product-specific comfort block placed below the hero, then product-click rate will increase for comparison shoppers and first-timers, because the only explanatory copy sits next to the footer and gives no figures or materials to weigh against rivals.",
+      "change": {
+        "from": "Footer-adjacent copy: \"Lightweight, bouncy, and wildly comfortable\" / \"better for the planet—win, win, win\"",
+        "to": "Three-point block below the hero naming materials and a concrete benefit each"
+      },
+      "suggested_copy": "Why it's comfy: soft merino wool, cushioned tree-fibre foam, sugarcane-based sole. Light enough to wear all day, easy to machine wash.",
+      "primary_metric": "product card click-through rate",
+      "guardrail_metric": "scroll depth to the product grid",
+      "feasibility": "qualitative_only",
+      "ice": {
+        "impact": 4,
+        "confidence": 5,
+        "ease": 7,
+        "score": 5.33,
+        "rationale": {
+          "impact": "Helps comparison shoppers, but this is a category page and product specifics mostly sit on product pages.",
+          "confidence": "base 3; +1 matches weak LIFT factor (clarity); +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Moves and rewrites an existing block; needs a small layout change and checked material claims."
+        }
+      },
+      "flagged": true
+    },
+    {
+      "id": "X9",
+      "finding_id": "F2",
+      "hypothesis": "If we change the mobile hero's loading path (519 requests, lab LCP about 24.6 s) to a lean path with a preloaded, compressed hero image and third-party scripts deferred until after first paint, then mobile bounce rate will decrease for mobile skimmers, because one emulated visit showed the largest element rendering very late and the hero is the first impression.",
+      "change": {
+        "from": "Mobile hero with about 24.6 s lab LCP and 519 requests (one emulated visit, unverified in the field)",
+        "to": "Preloaded, size-optimised hero image, deferred non-critical third-party scripts, lazy-loaded below-fold carousels"
+      },
+      "suggested_copy": null,
+      "primary_metric": "mobile bounce rate",
+      "guardrail_metric": "tracking and analytics event coverage (deferred tags must still fire)",
+      "feasibility": "bold_change_only",
+      "ice": {
+        "impact": 6,
+        "confidence": 5,
+        "ease": 3,
+        "score": 4.67,
+        "rationale": {
+          "impact": "If the lab number holds in the field it affects every mobile visitor, but the evidence is one emulated run, so check real-user LCP first.",
+          "confidence": "base 3; +1 matches weak LIFT factor (clarity, distraction); +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Engineering work on tags and images; first confirm with field data (CrUX/RUM)."
+        }
+      },
+      "flagged": true
+    }
+  ],
+  "top3": [
+    {
+      "experiment_id": "X2",
+      "why": "The modal blocks the hero and CTAs for nearly every visitor, and a screenshot check confirmed it. Fixing it affects the whole page, and the dev change is moderate."
+    },
+    {
+      "experiment_id": "X1",
+      "why": "A button label and link change in the CMS that connects the 70% sale promise to sale pages. It is the cheapest test with a clear primary metric."
+    },
+    {
+      "experiment_id": "X3",
+      "why": "The \"FINAL SALE\" badge and footer-only returns link were verified. Fit risk on shoes is a real blocker, and the fix is mostly copy once the policy is confirmed."
+    }
+  ],
+  "summary": "This page is for US shoppers, mostly brand-aware, who arrive for the Allbirds Black Friday sale and want a discounted men's or women's pair or a gift. The biggest problem, confirmed by screenshots, is the \"Where are we shipping to?\" modal, which covers the hero and its CTAs before the offer is seen. Next, the sale promise is not carried through. The hero buttons are generic, and the \"FINAL SALE\" badges have no stated returns terms. Test the modal removal first, with the sale-specific hero buttons (F6) and the returns/final-sale clarity (F4) next. Treat the performance (F2), reviews (F3) and other flagged findings as lower-confidence until field data or a check of the live page confirms them.",
+  "cost": {
+    "total_usd_equivalent": 0.5101,
+    "calls": [
+      {
+        "step": "understand",
+        "model": "claude-sonnet-5-5",
+        "seconds": 53.77,
+        "input_tokens": 39414,
+        "output_tokens": 2449,
+        "usd": 0.0902
+      },
+      {
+        "step": "analyse",
+        "model": "claude-sonnet-5-5",
+        "seconds": 89.82,
+        "input_tokens": 65834,
+        "output_tokens": 9797,
+        "usd": 0.2227
+      },
+      {
+        "step": "check",
+        "model": "claude-sonnet-5-5",
+        "seconds": 11.01,
+        "input_tokens": 23885,
+        "output_tokens": 856,
+        "usd": 0.0909
+      },
+      {
+        "step": "hypotheses",
+        "model": "claude-sonnet-5-5",
+        "seconds": 35.69,
+        "input_tokens": 19281,
+        "output_tokens": 4568,
+        "usd": 0.1063
+      }
+    ]
+  }
+}

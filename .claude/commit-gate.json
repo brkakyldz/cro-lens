@@ -1,0 +1,10 @@
+{
+  "label": "cro-lens",
+  "checks": [
+    {"name": "offline-suite", "command": "uv run pytest -q"},
+    {"name": "lint", "command": "uv run ruff check src tests"},
+    {"name": "types", "command": "uv run pyright"}
+  ],
+  "timeoutMs": 900000,
+  "state": { "file": "docs/CURRENT_STATE.md", "code": ["src/"], "mode": "warn" }
+}

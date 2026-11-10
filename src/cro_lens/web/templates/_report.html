@@ -1,0 +1,342 @@
+{% set r = rep %}
+{% set u = r.understanding %}
+{% set files = "/runs/" ~ r.run.id ~ "/files/" %}
+{% set FEAS = {
+  "ab_ok": "Can be A/B tested",
+  "bold_change_only": "Bold change only: a small tweak would not show up in an A/B test at this traffic",
+  "qualitative_only": "Check with user interviews or session recordings; an A/B test would not settle it"} %}
+{% set OBJ = {"absent": "Not answered on the page", "partial": "Partly answered", "answered": "Answered"} %}
+{% set AWARE = {
+  "unaware": "the visitor doesn't know they have the problem yet",
+  "problem_aware": "knows the problem, not yet the kinds of solution",
+  "solution_aware": "knows the kind of product, not yet this brand",
+  "product_aware": "knows this product, not yet convinced",
+  "most_aware": "ready to act; needs the offer and the button"} %}
+{% set LIFT_Q = {
+  "value_proposition": "Why should I want this?",
+  "relevance": "Is this what I came looking for?",
+  "clarity": "Do I understand it straight away?",
+  "anxiety": "Is anything making me nervous? Low means many worries.",
+  "distraction": "Is anything pulling me away? Low means many distractions.",
+  "urgency": "Why act now rather than later?"} %}
+{# cards follow the ranked list; findings without a test come last #}
+{% set cards = [] %}
+{% for e in r.experiments %}
+  {% set f = v.finding.get(e.finding_id) %}
+  {% if f and f.check.verdict != 'dropped' %}{% set _ = cards.append((f, e, loop.index)) %}{% endif %}
+{% endfor %}
+{% for f in v.live if f.id not in v.exp_for_finding %}{% set _ = cards.append((f, none, none)) %}{% endfor %}
+<article class="report" id="report">
+
+  <section class="rsec" id="summary" aria-labelledby="summary-h">
+    <p class="kicker">Page title</p>
+    <h1 class="report-title" id="summary-h">{{ r.capture.title or v.host }}</h1>
+    <p class="report-summary" data-testid="report-summary">{{ r.summary }}</p>
+    {% set kept = v.live|selectattr("check.verdict", "equalto", "kept")|list|length %}
+    <dl class="stats" aria-label="Counts">
+      <div><dd class="stat-n">{{ kept }}</dd><dt>ready to test</dt><dd class="stat-note">The evidence held up in both checks.</dd></div>
+      <div class="{{ 'stat-flag' if v.live|length - kept }}"><dd class="stat-n">{{ v.live|length - kept }}</dd><dt>to check before you build</dt><dd class="stat-note">The second check had doubts; look first.</dd></div>
+      <div><dd class="stat-n">{{ v.dropped|length }}</dd><dt>dropped</dt><dd class="stat-note">Thrown out because the evidence failed.</dd></div>
+      <div><dd class="stat-n">{{ r.experiments|length }}</dd><dt>test{{ '' if r.experiments|length == 1 else 's' }} suggested</dt><dd class="stat-note">Ranked best first, below.</dd></div>
+    </dl>
+
+    <div class="guide">
+      <p class="guide-h">How to read this report</p>
+      <ol class="guide-steps">
+        <li><span><strong>Read the summary</strong> above: who the page is for and its biggest problems.</span></li>
+        <li><span><strong>Start with the top tests.</strong> An A/B test shows half your visitors the current page and half a changed one, then keeps whichever converts better.</span></li>
+        <li><span><strong>Check each test's evidence</strong> (a screenshot and a quote from your page) and mark the finding <em>Right</em> or <em>Wrong</em>. Your answers train your next audits.</span></li>
+      </ol>
+      <details class="more glossary">
+        <summary>What the words mean</summary>
+        <dl class="kv glossary-list">
+          <dt>Conversion</dt><dd>The one thing the page wants a visitor to do, such as clicking “Get your free plan” or signing up.</dd>
+          <dt>ICE score</dt><dd>How we rank tests: the average of <strong>I</strong>mpact (how big the win could be, 1–10), <strong>C</strong>onfidence (how sure we are, 1–6; capped because we don't see your traffic data, and computed by code, not by the model) and <strong>E</strong>ase (how cheap it is to build, 1–10). Higher is better.</dd>
+          <dt>Check first</dt><dd>Every finding goes through two checks: code confirms its quote really is on your page, then a second model pass re-reads it. “Check first” means the quote is real but the second pass had doubts about the reasoning. It is not wrong; look before you spend on it.</dd>
+          <dt>Guardrail</dt><dd>A number that must not get worse while you test. More clicks are no win if the leads get worse.</dd>
+          <dt>LIFT</dt><dd>A common way to score a landing page on six questions a visitor asks: value, relevance, clarity, anxiety, distraction and urgency.</dd>
+          <dt>Persona</dt><dd>A simulated kind of visitor, such as a sceptical first-timer or someone comparing prices, used to see where different people get stuck.</dd>
+        </dl>
+      </details>
+    </div>
+  </section>
+
+  <section class="rsec" id="top3" aria-labelledby="top3-h">
+    <h2 class="section-h" id="top3-h">Start with these</h2>
+    <p class="section-note">If you only run three tests, run these, in this order.</p>
+    <ol class="top3" data-testid="top3">
+    {% for t in r.top3 %}
+      {% set e = v.exp[t.experiment_id] %}
+      <li class="top3-item" data-testid="top3-item">
+        <span class="top3-n" aria-hidden="true">{{ loop.index }}</span>
+        <div class="top3-body">
+          <p class="top3-change">{{ e.change.to }}</p>
+          <p class="top3-why">{{ t.why }}</p>
+          <p class="top3-ref"><a href="#{{ e.finding_id }}">See the evidence and how to measure it</a>{% if e.flagged %} <span class="flag-chip" title="The second check had doubts about this finding">Check first</span>{% endif %}</p>
+        </div>
+        <p class="top3-score" title="ICE score: impact, confidence and ease averaged"><span class="score">{{ '%.1f'|format(e.ice.score) }}</span><span class="score-k">ICE</span></p>
+      </li>
+    {% endfor %}
+    </ol>
+  </section>
+
+  <section class="rsec" id="backlog" aria-labelledby="backlog-h">
+    <h2 class="section-h" id="backlog-h">All tests, ranked</h2>
+    <p class="section-note">Every test cro-lens suggests, best first by ICE score (out of 10). Open one for its evidence, the exact change and how to measure it.</p>
+    <ol class="backlog" data-testid="backlog">
+    {% for e in r.experiments %}
+      <li class="xrow{% if e.flagged %} is-flagged{% endif %}" id="row-{{ e.id }}" data-testid="experiment-row"
+          data-experiment-id="{{ e.id }}" data-ice="{{ e.ice.score }}" data-flagged="{{ 'true' if e.flagged else 'false' }}">
+        <a class="xrow-link" href="#{{ e.finding_id }}">
+          <span class="xrow-n" aria-hidden="true">{{ loop.index }}</span>
+          <span class="xrow-main">
+            <span class="xrow-to">{{ e.change.to }}</span>
+            <span class="xrow-meta">Measured by {{ e.primary_metric }}</span>
+          </span>
+          <span class="xrow-state">{% if e.flagged %}<span class="flag-chip" title="The second check had doubts about this finding">Check first</span>{% else %}<span class="ok-chip" title="The evidence held up in both checks">Ready</span>{% endif %}</span>
+          <span class="xrow-score"><span class="score">{{ '%.1f'|format(e.ice.score) }}</span>
+            <span class="bar" aria-hidden="true"><span style="width: {{ (e.ice.score / v.max_score * 100)|round(1) }}%"></span></span></span>
+        </a>
+      </li>
+    {% endfor %}
+    </ol>
+  </section>
+
+  <section class="rsec" id="findings" aria-labelledby="findings-h">
+    <h2 class="section-h" id="findings-h">Each test in detail</h2>
+    <p class="section-note">Each card is one problem on the page and the test that would fix it: the proof from your page, what to change, and how to tell whether it worked.</p>
+    {% if v.live %}
+    {% set graded = v.live|selectattr('id', 'in', grades)|list|length %}
+    <p class="grade-progress" data-testid="grade-progress" data-run-id="{{ run_id }}"><span data-graded>{{ graded }}</span> of {{ v.live|length }} graded. Mark each finding right or wrong: <a href="/eval">your eval</a> counts it, and your next audits learn from it.</p>
+    {% endif %}
+    {% for f, x, rank in cards %}
+      {% set flagged = f.check.verdict == 'flagged' %}
+      {% set ev0 = f.evidence[0] if f.evidence else none %}
+      <article class="finding{% if flagged %} is-flagged{% endif %}" id="{{ f.id }}" data-testid="finding-card"
+               data-finding-id="{{ f.id }}" data-category="{{ f.category }}" data-verdict="{{ f.check.verdict }}"
+               data-grade="{{ grades[f.id].verdict if f.id in grades else '' }}">
+        <header class="finding-head">
+          <p class="finding-meta">
+            {% if rank %}<span class="finding-rank">Test {{ rank }}</span>{% endif %}
+            <span>{{ f.category|human|capitalize }}</span>
+            <span>{{ f.severity }} severity</span>
+            {% if f.kind == 'absence' %}<span>something is missing</span>{% endif %}
+            {% if flagged %}<span class="flag-chip" title="The second check had doubts about this finding">Check first</span>{% endif %}
+          </p>
+          {% if x %}<p class="finding-score" title="ICE score: impact, confidence and ease averaged"><span class="score">{{ '%.1f'|format(x.ice.score) }}</span><span class="score-k">ICE</span></p>{% endif %}
+          <h3 class="finding-title">{{ f.title }}</h3>
+        </header>
+
+        {% if flagged %}
+          <p class="flag-note"><strong>Check this before you build.</strong> The quote is on your page, but the second check had doubts: {{ f.check.reason }}</p>
+        {% endif %}
+        <p class="reasoning">{{ f.reasoning }}</p>
+
+        <div class="finding-body">
+          {% if ev0 %}
+          <figure class="ev">
+            {% if ev0.crop %}
+            <div class="crop"><img data-testid="finding-crop" src="{{ files }}{{ ev0.crop }}" alt="The quoted block on {{ ev0.viewport }}"></div>
+            {% endif %}
+            <blockquote class="quote" data-testid="finding-quote">{{ ev0.quote }}</blockquote>
+            <figcaption class="caption" title="block {{ ev0.block_id }}">{{ 'Matched on your page' if ev0.valid else 'Not found on the page' }}, {{ ev0.viewport }} view</figcaption>
+          </figure>
+          {% endif %}
+          {% if x %}
+          <dl class="plan">
+            <div><dt>Now</dt><dd>{{ x.change.from }}</dd></div>
+            <div class="plan-to"><dt>Test this</dt><dd>{{ x.change.to }}</dd></div>
+            {% if x.suggested_copy %}<div><dt>Wording</dt><dd class="plan-copy">{{ x.suggested_copy }}{% if "[" in x.suggested_copy %}<span class="plan-sub">Fill in anything in [brackets] with your own facts.</span>{% endif %}</dd></div>{% endif %}
+            <div><dt>Measure</dt><dd>{{ x.primary_metric }}<span class="plan-sub">Must not get worse: {{ x.guardrail_metric }}</span><span class="plan-sub">{{ FEAS[x.feasibility] }}</span></dd></div>
+          </dl>
+          {% endif %}
+        </div>
+
+        <details class="more">
+          <summary>Why this test{% if f.evidence|length > 1 %}, {{ f.evidence|length - 1 }} more quote{{ '' if f.evidence|length == 2 else 's' }}{% endif %}, who gets stuck</summary>
+          <div class="more-body">
+            {% if x %}
+            <p class="more-h">The bet</p>
+            <p>{{ x.hypothesis }}</p>
+            <p class="more-h">How the score was set (ICE {{ '%.2f'|format(x.ice.score) }})</p>
+            <dl class="kv">
+              <dt>Impact {{ x.ice.impact }}/10</dt><dd>{{ x.ice.rationale.impact }}</dd>
+              <dt>Confidence {{ x.ice.confidence }}/6</dt><dd>{{ x.ice.rationale.confidence }}</dd>
+              <dt>Ease {{ x.ice.ease }}/10</dt><dd>{{ x.ice.rationale.ease }}</dd>
+            </dl>
+            {% endif %}
+            {% if f.evidence|length > 1 %}
+            <p class="more-h">More from the page</p>
+            <ol class="ev-more">
+            {% for e in f.evidence[1:] %}
+              <li class="ev">
+                {% if e.crop %}<div class="crop"><img data-testid="finding-crop" src="{{ files }}{{ e.crop }}" alt="The quoted block on {{ e.viewport }}"></div>{% endif %}
+                <blockquote class="quote" data-testid="finding-quote">{{ e.quote }}</blockquote>
+                <p class="caption" title="block {{ e.block_id }}">{{ 'Matched on your page' if e.valid else 'Not found on the page' }}, {{ e.viewport }} view</p>
+              </li>
+            {% endfor %}
+            </ol>
+            {% endif %}
+            <p class="more-h">Who gets stuck here</p>
+            <p>{% for p in f.personas %}{{ p|human|capitalize if loop.first else p|human }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+            {% if not flagged %}
+            <p class="more-h">Why the second check kept it</p>
+            <p>{{ f.check.reason }}</p>
+            {% endif %}
+          </div>
+        </details>
+
+        {% set g = grades.get(f.id) %}
+        <div class="grade" role="group" aria-label="Your verdict on {{ f.id }}">
+          <span class="grade-label">Is this finding right?</span>
+          <button type="button" class="grade-btn grade-yes" data-testid="grade-valid" data-verdict="valid" aria-pressed="{{ 'true' if g and g.verdict == 'valid' else 'false' }}">Right</button>
+          <button type="button" class="grade-btn grade-no" data-testid="grade-invalid" data-verdict="invalid" aria-pressed="{{ 'true' if g and g.verdict == 'invalid' else 'false' }}">Wrong</button>
+          <label class="grade-note-wrap"><span class="visually-hidden">Note on {{ f.id }}</span>
+            <input type="text" class="grade-note" data-testid="grade-note" maxlength="500" placeholder="Why? (optional, helps the next audit)" value="{{ g.note if g else '' }}">
+          </label>
+          <span class="grade-status" aria-live="polite"></span>
+        </div>
+      </article>
+    {% else %}
+      <p class="muted">No finding survived the self-check.</p>
+    {% endfor %}
+  </section>
+
+  <section class="rsec" id="understanding" aria-labelledby="und-h" data-testid="understanding">
+    <h2 class="section-h" id="und-h">What the page says, and to whom</h2>
+    <p class="section-note">How cro-lens read your page. Every suggestion above rests on this reading, so if something here is wrong, run the audit again and fill in what you know on the start page.</p>
+    <dl class="und">
+      {% for key, label, hint in [("audience", "Audience", "who the page talks to"), ("job_to_be_done", "Job to be done", "what the visitor came to get done"), ("traffic_source", "Traffic source", "where visitors probably come from"), ("awareness_level", "Awareness", "how much the visitor already knows")] %}
+        {% set it = u[key] %}
+        <div class="und-row">
+          <dt>{{ label }}<span class="und-hint">{{ hint }}</span></dt>
+          <dd>
+            <p class="und-v">{% if key == 'awareness_level' %}{{ it.value|human|capitalize }}: {{ AWARE.get(it.value, '') }}{% else %}{{ it.value }}{% endif %}</p>
+            <p class="und-meta"{% if it.evidence %} title="blocks {{ it.evidence|join(' ') }}"{% endif %}>{% if it.source == 'given' %}<span class="given">Given by you</span>{% else %}A guess from the page, {{ it.confidence }} confidence{% endif %}</p>
+          </dd>
+        </div>
+      {% endfor %}
+      <div class="und-row"><dt>Promise<span class="und-hint">what the page says you'll get</span></dt><dd><p class="und-v">{{ u.promise.value }}</p></dd></div>
+      <div class="und-row"><dt>Offer<span class="und-hint">what the visitor is asked to take</span></dt><dd><p class="und-v">{{ u.offer.value }}</p></dd></div>
+    </dl>
+
+    <h3 class="sub-h">Five-second test</h3>
+    <p class="section-note">What a visitor takes away from the first screen in five seconds: is it clear what this is, and is it specific?</p>
+    <div class="five">
+      <p class="five-verdict">
+        <span class="{{ 'ok-chip' if u.five_second.clear else 'flag-chip' }}">{{ 'Clear' if u.five_second.clear else 'Not clear' }}</span>
+        <span class="{{ 'ok-chip' if u.five_second.specific else 'flag-chip' }}">{{ 'Specific' if u.five_second.specific else 'Not specific' }}</span>
+      </p>
+      <blockquote class="quote">{{ u.five_second.quote }}</blockquote>
+      <p class="five-read">{{ u.five_second.understood }}</p>
+    </div>
+
+    <h3 class="sub-h">LIFT scores</h3>
+    <p class="section-note">Six questions every visitor silently asks, scored from 1 (a serious problem) to 5 (strong). Weak ones are marked in amber.</p>
+    <table class="lift">
+      <tbody>
+      {% for l in r.lift %}
+        <tr{% if l.score <= 2 %} class="is-low"{% endif %}>
+          <th scope="row">{{ l.factor|human|capitalize }}<span class="lift-q">{{ LIFT_Q.get(l.factor, '') }}</span></th>
+          <td class="lift-score"><span class="ticks" aria-label="{{ l.score }} of 5">{% for i in range(5) %}<i class="{{ 'on' if i < l.score }}"></i>{% endfor %}</span><span class="lift-n">{{ l.score }}</span></td>
+          <td class="lift-reason">{{ l.reason }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    <details class="more personas-box">
+      <summary>How {{ r.personas|length }} kinds of visitor walk the page</summary>
+      <p class="section-note">Simulated visitors: where each one gets stuck, and whether the page answers the questions they arrive with.</p>
+      <div class="personas">
+      {% for p in r.personas %}
+        <section class="persona">
+          <h4>{{ p.persona|human|capitalize }}</h4>
+          {% if p.stalls %}
+          <ul class="stalls">
+            {% for s in p.stalls %}<li title="block {{ s.block_id }}">{{ s.why }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+          <ul class="objections">
+            {% for o in p.objections %}
+              <li class="obj-{{ o.status }}"><span class="obj-q">{{ o.objection }}</span> <span class="obj-mark">{{ OBJ.get(o.status, o.status) }}</span></li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endfor %}
+      </div>
+    </details>
+  </section>
+
+  <section class="rsec" id="unverifiable" aria-labelledby="unv-h">
+    <h2 class="section-h" id="unv-h">Assumptions and what we couldn't verify</h2>
+    <p class="section-note">What cro-lens could not see and had to assume. Read it before you act on a suggestion that depends on it.</p>
+    <ul class="plain-rows" data-testid="unverifiable-list">
+    {% for x in r.unverifiable %}
+      <li data-testid="unverifiable-item">
+        <p class="row-h">{{ x.what }}</p>
+        <p class="muted">{{ x.why }}</p>
+        <p><span class="muted">Assumed:</span> {{ x.assumption }}</p>
+      </li>
+    {% else %}
+      <li class="muted">Nothing; every input the analysis needed was on the page or given.</li>
+    {% endfor %}
+    </ul>
+  </section>
+
+  <section class="rsec" id="dropped" aria-labelledby="drop-h">
+    <h2 class="section-h" id="drop-h">Dropped by the self-check</h2>
+    <p class="section-note">Findings thrown out because their quote was not on the page or their reasoning did not hold up. They never reach the tests above.</p>
+    <ul class="plain-rows dropped" data-testid="dropped-list">
+    {% for f in v.dropped %}
+      <li data-testid="dropped-item" data-finding-id="{{ f.id }}">
+        <p class="row-h">{{ f.title }}</p>
+        <p class="muted">{{ f.check.reason }}</p>
+        {% if f.evidence %}<p class="muted">Quoted: “{{ f.evidence[0].quote }}”</p>{% endif %}
+      </li>
+    {% else %}
+      <li class="muted">None. Every finding's quotes were on the page and held up.</li>
+    {% endfor %}
+    </ul>
+  </section>
+
+  <div class="rsec rsec-pair">
+  <section id="speed" aria-labelledby="speed-h" data-testid="speed-panel">
+    <h2 class="section-h" id="speed-h">Page speed</h2>
+    {% set sp = r.capture.speed %}
+    <dl class="kv-table">
+      <div><dt>Main content visible<span class="und-hint">largest contentful paint</span></dt><dd>{{ sp.lcp_ms|ms }}</dd></div>
+      <div><dt>Server's first answer<span class="und-hint">time to first byte</span></dt><dd>{{ sp.ttfb_ms|ms }}</dd></div>
+      <div><dt>Layout jumping<span class="und-hint">layout shift (CLS), 0 is best</span></dt><dd>{{ sp.cls if sp.cls is not none else '–' }}</dd></div>
+      <div><dt>Fully loaded<span class="und-hint">load event</span></dt><dd>{{ sp.load_ms|ms }}</dd></div>
+      <div><dt>Page readable<span class="und-hint">DOM content loaded</span></dt><dd>{{ sp.dcl_ms|ms }}</dd></div>
+      <div><dt>Files requested</dt><dd>{{ sp.requests if sp.requests is not none else '–' }}</dd></div>
+      <div><dt>Downloaded, at least</dt><dd>{{ sp.transfer_bytes_min|bytes }}</dd></div>
+    </dl>
+    <p class="section-note">{{ sp.source }}. One visit from this machine: a rough signal, not what real visitors see.</p>
+  </section>
+
+  <section id="run-cost" aria-labelledby="cost-h">
+    <h2 class="section-h" id="cost-h">Run and cost</h2>
+    <p class="cost" data-testid="cost-total"><span class="cost-n">${{ '%.4f'|format(r.cost.total_usd_equivalent) }}</span> {{ 'billed to your Anthropic API key' if r.run.billing == 'api_key' else 'API-equivalent' }}, {{ r.cost.calls|length }} model call{{ '' if r.cost.calls|length == 1 else 's' }}, {{ r.run.model }} via {{ r.run.provider }}</p>
+    {% set fb = r.run.feedback %}
+    {% if fb %}
+    <p class="feedback-used" data-testid="feedback-used">{% if not fb.enabled %}Feedback was off: this run learned from none of your grades.{% elif fb.examples %}This run learned from {{ fb.examples }} graded finding{{ '' if fb.examples == 1 else 's' }} of yours ({{ fb.same_site }} from this site).{% else %}This run learned from 0 graded findings: none were graded yet.{% endif %}</p>
+    {% endif %}
+    {% if r.cost.calls %}
+    <details class="more">
+      <summary>Model calls</summary>
+      <table class="calls">
+        <thead><tr><th scope="col">Step</th><th scope="col">Model</th><th scope="col" class="num">Seconds</th><th scope="col" class="num">Tokens in</th><th scope="col" class="num">Tokens out</th><th scope="col" class="num">USD</th></tr></thead>
+        <tbody>
+        {% for c in r.cost.calls %}
+          <tr><td>{{ c.step }}</td><td>{{ c.model }}</td><td class="num">{{ '%.1f'|format(c.seconds) }}</td><td class="num">{{ '{:,}'.format(c.input_tokens) }}</td><td class="num">{{ '{:,}'.format(c.output_tokens) }}</td><td class="num">{{ '%.4f'|format(c.usd) }}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </details>
+    {% endif %}
+    <p class="section-note">{% if r.run.billing == 'api_key' %}Billed: ANTHROPIC_API_KEY was set, so Claude Code sent these calls to that API account; the figure is its estimate of the bill.{% else %}API-equivalent: what these calls would cost at list API prices; a subscription run pays nothing extra.{% endif %} Captured {{ r.capture.captured_at|date }}; desktop {{ r.capture.viewports.desktop.height if r.capture.viewports.desktop else '?' }} px tall. Files: <a href="{{ files }}report.md">report.md</a>, <a href="{{ files }}report.json">report.json</a>, <a href="{{ files }}capture/desktop_full.png">full screenshot</a>.</p>
+  </section>
+  </div>
+</article>

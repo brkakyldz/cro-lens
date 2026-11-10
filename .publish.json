@@ -1,0 +1,7 @@
+{
+  "private": [
+    "docs/lessons",
+    "reports/research"
+  ],
+  "allow": []
+}

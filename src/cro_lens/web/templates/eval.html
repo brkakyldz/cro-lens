@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Your eval · cro-lens{% endblock %}
+{% block main %}
+<section class="column eval">
+  <header class="page-head">
+    <p class="eyebrow"><span class="chip">Eval</span> Built from your grades · stays on this machine</p>
+    <h1 class="display">Your eval</h1>
+    <p class="lede">How often cro-lens was right for you. You grade on each audit's report: under every
+      finding, press <strong>Right</strong> or <strong>Wrong</strong>. This page adds those answers up, and each
+      new audit reads up to {{ max_examples }} of them, the same site first, so it learns what you count as a
+      real problem. Your grades stay on this machine.</p>
+    {% set todo = st.runs|selectattr('findings')|rejectattr('graded')|list %}
+    {% if todo %}<p class="eval-cta"><a class="btn btn-ink btn-go" href="/runs/{{ todo[0].run_id }}#findings">Grade {{ todo[0].url|host if todo[0].url else 'your latest audit' }}</a></p>{% endif %}
+  </header>
+
+  <dl class="eval-stats">
+    <div data-testid="eval-graded"><dt>Graded</dt>
+      <dd class="score">{{ st.graded }}</dd>
+      <dd class="muted small">{{ st.valid }} right · {{ st.invalid }} wrong</dd></div>
+    <div data-testid="eval-precision"><dt>Precision</dt>
+      <dd class="score{% if st.precision is none %} score-pending{% endif %}">{{ st.precision|pct('pending grades') }}</dd>
+      <dd class="muted small">of the findings you graded, the share you marked right: how often cro-lens is right for you</dd></div>
+    <div data-testid="eval-validity"><dt>Evidence validity</dt>
+      <dd class="score{% if st.evidence_validity is none %} score-pending{% endif %}">{{ st.evidence_validity|pct('pending runs') }}</dd>
+      <dd class="muted small">quotes that code matched to the page's own text{% if st.evidence_validity is not none %}, over {{ st.evidence_runs }} audit{{ '' if st.evidence_runs == 1 else 's' }}{% endif %}</dd></div>
+    <div data-testid="eval-examples"><dt>Next audit learns from</dt>
+      <dd class="score">{{ st.next_run_examples }}</dd>
+      <dd class="muted small">of your graded findings go into the next audit as examples (at most {{ max_examples }})</dd></div>
+  </dl>
+
+  {% if not st.graded %}
+  <p class="eval-empty" data-testid="eval-empty">Nothing graded yet. Open a finished audit (the list below),
+    scroll to <em>Each test in detail</em> and press <strong>Right</strong> or <strong>Wrong</strong> under each
+    finding; add a note when the reason matters. Precision stays <em>pending</em> until then.</p>
+  {% endif %}
+
+  {% if st.by_category %}
+  <section class="eval-part" aria-labelledby="cat-h">
+    <h2 class="section-h" id="cat-h">By category</h2>
+    <table class="eval-table">
+      <thead><tr><th scope="col">Category</th><th scope="col" class="num">Graded</th><th scope="col" class="num">Right</th><th scope="col" class="c-progress">Precision</th></tr></thead>
+      <tbody>
+      {% for c in st.by_category %}
+        <tr data-testid="eval-category-row" data-category="{{ c.category }}" data-graded="{{ c.graded }}" data-valid="{{ c.valid }}">
+          <td>{{ c.category|human }}</td>
+          <td class="num mono">{{ c.graded }}</td>
+          <td class="num mono">{{ c.valid }}</td>
+          <td class="c-progress"><span class="mono">{{ c.precision|pct('pending grades') }}</span>
+            <span class="bar" aria-hidden="true"><span style="width: {{ ((c.precision or 0) * 100)|round(1) }}%"></span></span></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  {% endif %}
+
+  <section class="eval-part" aria-labelledby="runs-h">
+    <h2 class="section-h" id="runs-h">Audits</h2>
+    {% if st.runs %}
+    <table class="eval-table">
+      <thead><tr><th scope="col">Page</th><th scope="col">Finished</th><th scope="col" class="c-progress">Graded</th></tr></thead>
+      <tbody>
+      {% for r in st.runs %}
+        <tr data-testid="eval-run-row" data-run-id="{{ r.run_id }}" data-findings="{{ r.findings }}" data-graded="{{ r.graded }}">
+          <td><a class="row-link" href="/runs/{{ r.run_id }}">{{ r.url|host if r.url else r.run_id }}</a>
+            <span class="mono muted path">{{ r.url }}</span></td>
+          <td class="mono muted">{{ r.finished_at|date }}</td>
+          <td class="c-progress">
+            {% if r.findings %}
+              <span class="mono">{{ r.graded }}/{{ r.findings }}</span>
+              <span class="bar" aria-hidden="true"><span style="width: {{ ([r.graded, r.findings]|min / r.findings * 100)|round(1) }}%"></span></span>
+              {% if r.graded %}<span class="muted small">{{ r.valid }} right</span>{% endif %}
+              {% if r.graded < r.findings %}<a class="small grade-link" href="/runs/{{ r.run_id }}#findings">Grade →</a>{% endif %}
+            {% else %}
+              <span class="muted">no findings</span>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="muted">No finished audit yet. <a href="/">Run one</a>.</p>
+    {% endif %}
+  </section>
+</section>
+{% endblock %}

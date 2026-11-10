@@ -1,0 +1,25 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+# run output
+/runs/
+/cro-lens-runs/
+# eval snapshots and raw results are regenerated, not committed (ADR 0003)
+eval/pages/
+eval/results/
+# machine state
+.claude/precompact/
+.claude/skills
+test-results/
+.claude/worktrees/
+.claude/.test-gate-green
+
+# Local-only agent notes; private material lives in the maintainer's internal repo
+CLAUDE.local.md
+/docs/lessons/
+/reports/research/

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% set labels = {"robots": "Robots check", "capture": "Capture", "understand": "Understand", "analyse": "Analyse", "check": "Self-check", "hypotheses": "Hypotheses", "report": "Report"} %}
+{% block title %}{{ st.url|host if st.url else run_id }} · cro-lens{% endblock %}
+{% block body_class %}page-run{% endblock %}
+{% block main %}
+<div class="run" id="run" data-run-id="{{ run_id }}" data-status="{{ st.status }}">
+  <header class="masthead">
+    <div class="masthead-main">
+      <p class="eyebrow"><span class="chip">Audit</span> <span class="mono">{{ (rep.run.finished_at if rep else st.started_at)|date }}</span></p>
+      <p class="masthead-host">{{ st.url|host if st.url else run_id }}</p>
+      <p class="masthead-url mono"><a href="{{ st.url }}" rel="noreferrer noopener" target="_blank">{{ st.url }}</a></p>
+    </div>
+    <p class="masthead-actions">
+      <button type="button" class="btn btn-quiet" data-testid="run-delete" data-action="delete" data-run-id="{{ run_id }}"
+              data-host="{{ st.url|host if st.url else run_id }}" data-after="/" {% if st.status == 'running' %}hidden{% endif %}>Delete this audit</button>
+    </p>
+  </header>
+
+  <div class="run-grid">
+    <aside class="rail" aria-label="Pipeline steps">
+      {% set total = steps.values()|map(attribute='seconds')|reject('none')|sum %}
+      <details class="steps-box" id="steps-box"{% if not rep %} open{% endif %}>
+      <summary class="rail-h steps-sum">Steps<span class="steps-done" id="steps-done">{% if rep %} · all {{ STEPS|length }} done in {{ (total // 60)|int }} min {{ (total % 60)|round|int }} s{% endif %}</span></summary>
+      <ol class="steps" id="steps">
+      {% for s in STEPS %}
+        {% set step = steps[s] %}
+        <li class="step" data-testid="step-{{ s }}" data-step="{{ s }}" data-status="{{ step.status }}">
+          <span class="step-n mono">{{ '%02d'|format(loop.index) }}</span>
+          <span class="step-name">{{ labels[s] }}</span>
+          <span class="step-t mono">{% if step.seconds is not none %}{{ '%.1f'|format(step.seconds) }} s{% endif %}</span>
+          <span class="step-detail">{{ step.detail or '' }}</span>
+        </li>
+      {% endfor %}
+      </ol>
+      </details>
+      <nav class="toc" aria-label="Report contents" id="toc" {% if not rep %}hidden{% endif %}>
+        <h2 class="rail-h">Report</h2>
+        <ol>
+          <li><a href="#summary">Summary</a></li>
+          <li><a href="#top3">Start with these</a></li>
+          <li><a href="#backlog">All tests, ranked</a></li>
+          <li><a href="#findings">Each test in detail</a></li>
+          <li><a href="#understanding">What the page says</a></li>
+          <li><a href="#unverifiable">Couldn't verify</a></li>
+          <li><a href="#dropped">Dropped</a></li>
+          <li><a href="#speed">Speed and cost</a></li>
+        </ol>
+      </nav>
+    </aside>
+
+    <div class="run-main" id="run-main" aria-live="polite">
+    {% if rep %}
+      {% include "_report.html" %}
+    {% else %}
+      <section class="live" id="live">
+        {% if st.status == 'failed' %}
+          <div class="run-error" data-testid="run-error" id="run-error">
+            <p class="run-error-h">The run stopped{% if st.exit_code %} (exit {{ st.exit_code }}){% endif %}.</p>
+            <p class="mono">{{ st.error }}</p>
+            <p class="run-error-actions">
+              {% if st.resume_from %}
+              <button type="button" class="btn btn-ink" data-testid="resume-button" data-action="resume" data-run-id="{{ run_id }}">Continue from {{ labels.get(st.resume_from, st.resume_from)|lower }}</button>
+              <span class="hint">Uses the capture already taken; the page is not visited again.</span>
+              {% elif st.url %}
+              <button type="button" class="btn btn-ink" data-testid="rerun-button" data-action="rerun" data-url="{{ st.url }}"
+                      data-model="{{ spec.model if spec else 'sonnet' }}"
+                      data-audience="{{ spec.given.audience or '' if spec else '' }}" data-traffic="{{ spec.given.traffic or '' if spec else '' }}"
+                      data-goal="{{ spec.given.goal or '' if spec else '' }}">Run again</button>
+              <span class="hint">The capture did not finish, so this starts a new audit of the same page.</span>
+              {% endif %}
+            </p>
+            <p class="action-error form-error" data-testid="action-error" role="alert" hidden></p>
+            <p><a href="/">Start another audit</a></p>
+          </div>
+        {% else %}
+          <p class="live-h" id="live-h">Running. The report appears here when the last step finishes.</p>
+          <div class="run-error" data-testid="run-error" id="run-error" hidden></div>
+        {% endif %}
+        <ol class="log mono" id="log">
+        {% for ev in st.events if ev.status != 'started' %}
+          <li class="log-{{ ev.status }}"><span class="log-step">{{ ev.step }}</span><span class="log-d">{{ ev.detail or ev.status }}</span><span class="log-t">{% if ev.get("seconds") is not none %}{{ '%.1f'|format(ev.seconds) }} s{% endif %}</span></li>
+        {% endfor %}
+        </ol>
+      </section>
+    {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="/static/js/run.js?v={{ asset_v }}" defer></script>
+<script src="/static/js/actions.js?v={{ asset_v }}" defer></script>
+<script src="/static/js/grade.js?v={{ asset_v }}" defer></script>{% endblock %}

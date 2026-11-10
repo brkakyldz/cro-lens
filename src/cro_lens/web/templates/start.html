@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}New audit · cro-lens{% endblock %}
+{% block main %}
+<section class="column start">
+  <p class="eyebrow"><span class="chip">cro-lens</span> Desktop and mobile · every quote checked</p>
+  <h1 class="display">Audit one landing page.</h1>
+  <p class="lede">cro-lens captures the page on desktop and mobile, reads it the way a first-time visitor would,
+    and writes a ranked backlog of A/B tests. Every finding quotes the page, and a second pass checks each
+    quote before it reaches you.</p>
+
+  <div data-testid="provider-warning" class="notice" id="provider-warning" role="status" hidden>
+    <p class="notice-h">Claude Code cannot make model calls yet, so an audit cannot start.</p>
+    <p class="mono" id="provider-error"></p>
+  </div>
+  <div data-testid="provider-notice" class="notice notice-info" id="provider-notice" role="status" hidden>
+    <div id="provider-notices"></div>
+  </div>
+
+  <form id="start-form" class="start-form card" novalidate>
+    <label class="url-field">
+      <span class="field-label">Page address</span>
+      <input data-testid="url-input" id="url" name="url" type="url" inputmode="url" autocomplete="url"
+             spellcheck="false" placeholder="https://example.com/pricing" required autofocus>
+    </label>
+    <p data-testid="form-error" class="form-error" id="form-error" role="alert" hidden></p>
+
+    <fieldset class="options">
+      <legend>What you already know <span class="hint">Optional. Anything given here replaces a guess.</span></legend>
+      <ol class="option-list">
+        <li>
+          <label for="audience">Audience</label>
+          <input data-testid="audience-input" id="audience" name="audience" type="text"
+                 placeholder="Freelance designers who invoice monthly">
+        </li>
+        <li>
+          <label for="traffic">Traffic source</label>
+          <input data-testid="traffic-input" id="traffic" name="traffic" type="text"
+                 placeholder="Paid social, cold">
+        </li>
+        <li>
+          <label for="goal">Conversion goal</label>
+          <input data-testid="goal-input" id="goal" name="goal" type="text" placeholder="Trial sign-up">
+        </li>
+        <li>
+          <label for="model">Model</label>
+          <select data-testid="model-select" id="model" name="model">
+            <option value="sonnet" selected>sonnet</option>
+            <option value="opus">opus</option>
+          </select>
+        </li>
+        <li class="check-row">
+          <label for="feedback">Learning</label>
+          <span class="check">
+            <input data-testid="feedback-toggle" id="feedback" name="feedback" type="checkbox" checked>
+            <label for="feedback">Learn from my graded findings</label>
+            <span class="hint">up to 12, this site first · <a href="/eval">your eval</a></span>
+          </span>
+        </li>
+      </ol>
+    </fieldset>
+
+    <div class="start-actions">
+      <button data-testid="start-button" type="submit" class="btn btn-ink btn-go">Run the audit</button>
+      <span class="hint">Takes a few minutes. One visit per viewport; robots.txt is honoured.</span>
+    </div>
+  </form>
+
+  <section class="recent" aria-labelledby="recent-h">
+    <h2 id="recent-h" class="section-h">Earlier audits</h2>
+    <div data-testid="recent-runs">
+    {% if runs %}
+      <table class="runs-table">
+        <thead><tr><th scope="col">Page</th><th scope="col">Started</th><th scope="col" class="num">State</th><th scope="col" class="num"><span class="visually-hidden">Actions</span></th></tr></thead>
+        <tbody>
+        {% for r in runs %}
+          <tr data-testid="run-row" data-run-id="{{ r.run_id }}" data-status="{{ r.status }}">
+            <td><a data-testid="run-link" href="/runs/{{ r.run_id }}"><span class="host">{{ r.url|host if r.url else r.run_id }}</span>
+              <span class="mono path">{{ r.url }}</span></a></td>
+            <td class="mono muted">{{ r.started_at|date }}</td>
+            <td class="num"><span class="state state-{{ r.status }}">{{ r.status }}</span></td>
+            <td class="num row-actions">
+              {% if r.status == 'failed' and r.resume_from %}
+              <button type="button" class="btn btn-quiet" data-testid="run-resume" data-action="resume"
+                      data-run-id="{{ r.run_id }}" title="Continue from {{ r.resume_from }}; the page is not visited again">Continue</button>
+              {% endif %}
+              {% if r.status != 'running' %}
+              <button type="button" class="btn btn-quiet" data-testid="run-delete" data-action="delete"
+                      data-run-id="{{ r.run_id }}" data-host="{{ r.url|host if r.url else r.run_id }}">Delete</button>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">No audits yet. The first one you run appears here.</p>
+    {% endif %}
+    </div>
+  </section>
+</section>
+{% endblock %}
+{% block scripts %}<script src="/static/js/start.js?v={{ asset_v }}" defer></script>
+<script src="/static/js/actions.js?v={{ asset_v }}" defer></script>{% endblock %}

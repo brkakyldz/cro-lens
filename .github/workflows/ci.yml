@@ -1,0 +1,34 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - run: uv sync
+      - run: uv run playwright install --with-deps chromium
+      - name: lint
+        run: uv run ruff check src tests && uv run ruff format --check src tests
+      - name: types
+        run: uv run pyright
+      - name: unit (offline, fake provider)
+        run: uv run pytest -q
+      - name: held-out acceptance (fake provider)
+        env:
+          CRO_LENS_REPO: ${{ github.workspace }}
+          CRO_LENS_PROVIDER: fake
+        run: |
+          if [ ! -f tests/acceptance/holdout/verify.json ]; then
+            echo "::warning title=held-out NOT RUN::tests/acceptance/holdout is not landed; only unit tests ran"
+            exit 0
+          fi
+          uv run pytest tests/acceptance/holdout -p no:cacheprovider

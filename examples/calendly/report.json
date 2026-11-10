@@ -1,0 +1,893 @@
+{
+  "schema_version": "report@1",
+  "run": {
+    "id": "20261110-210614-calendly-com",
+    "url": "https://calendly.com/",
+    "final_url": "https://calendly.com/",
+    "started_at": "2026-11-10T18:06:14+00:00",
+    "finished_at": "2026-11-10T18:10:23+00:00",
+    "provider": "claude-code",
+    "model": "sonnet",
+    "given": {
+      "audience": null,
+      "traffic": null,
+      "goal": null
+    }
+  },
+  "capture": {
+    "url": "https://calendly.com/",
+    "final_url": "https://calendly.com/",
+    "status_code": 200,
+    "title": "Meeting Scheduling Software and AI Meeting Tools | Calendly",
+    "captured_at": "2026-11-10T18:07:50+00:00",
+    "consent_banner": {
+      "present": true,
+      "dismissed": true
+    },
+    "speed": {
+      "source": "lab: one local Playwright visit (mobile emulation)",
+      "ttfb_ms": 292.09999990463257,
+      "dcl_ms": 1099.6999998092651,
+      "load_ms": 1967.0,
+      "lcp_ms": 724.0,
+      "cls": 0.0015,
+      "requests": 227,
+      "transfer_bytes_min": 5042700,
+      "psi": null
+    },
+    "viewports": {
+      "desktop": {
+        "height": 11306,
+        "blocks": 242,
+        "tiles_sent": 6,
+        "truncated": true
+      },
+      "mobile": {
+        "height": 18799,
+        "blocks": 238,
+        "tiles_sent": 4,
+        "truncated": true
+      }
+    }
+  },
+  "understanding": {
+    "audience": {
+      "value": "Individual professionals and small-to-mid teams whose work runs on meetings (client-facing roles such as sales, consultants, recruiters, coaches, freelancers) who schedule with outside people and also want AI notes, follow-ups and payments. Sign-up via Google/Microsoft suggests Workspace/M365 users.",
+      "confidence": "medium",
+      "evidence": [
+        "D42",
+        "D43",
+        "D12",
+        "D13",
+        "M37",
+        "M41"
+      ],
+      "source": "inferred"
+    },
+    "job_to_be_done": {
+      "value": "When I have to book, prepare for, capture and follow up on meetings with clients or colleagues, I want the scheduling, recap and follow-up busywork handled for me, so I can spend my time on the work that matters instead of juggling tools.",
+      "confidence": "medium",
+      "evidence": [
+        "D10",
+        "D11",
+        "D43",
+        "D29",
+        "D34",
+        "M41"
+      ]
+    },
+    "traffic_source": {
+      "value": "Mostly direct/brand and branded organic search: the homepage has full site navigation, a Log In link, brand-first copy and a product-suite carousel. Page title is keyword-rich ('Meeting Scheduling Software'), so non-branded organic search adds a share. It is not a single-offer paid landing page.",
+      "confidence": "medium",
+      "evidence": [
+        "D2",
+        "D3",
+        "D8",
+        "D10",
+        "D23"
+      ],
+      "source": "inferred"
+    },
+    "awareness_level": {
+      "value": "product_aware",
+      "confidence": "medium",
+      "evidence": [
+        "D10",
+        "D23",
+        "D24",
+        "D28",
+        "D8",
+        "D12"
+      ]
+    },
+    "promise": {
+      "value": "Calendly takes over the work around meetings (scheduling, recaps, follow-ups, payments) with AI and fewer tools, so you get the busywork done with less effort.",
+      "evidence": [
+        "D10",
+        "D11",
+        "D43"
+      ]
+    },
+    "offer": {
+      "value": "Free sign-up with no credit card required, via Google, Microsoft or email. There is also a 'Get started for free' button in the nav and a 'Talk to sales' option.",
+      "evidence": [
+        "D12",
+        "D13",
+        "D14",
+        "D9",
+        "D7",
+        "D44"
+      ]
+    },
+    "five_second": {
+      "understood": "Calendly is a tool that handles meeting-related tasks with AI. It covers scheduling, recaps and follow-ups, and you can sign up free with Google or Microsoft. The headline alone is vague about what the product does. The subhead and the product tabs (Scheduling, Callie, Notetaker, Payments) fill that in. The target user is not named.",
+      "clear": true,
+      "specific": false,
+      "quote": "All the work around meetings, handled. — From AI-powered scheduling to automated meeting recaps and follow-ups, get the busywork done with fewer tools and less effort.",
+      "evidence": [
+        "D10",
+        "D11",
+        "D12",
+        "D13",
+        "D14",
+        "D17",
+        "D18",
+        "D19",
+        "D20"
+      ]
+    }
+  },
+  "lift": [
+    {
+      "factor": "value_proposition",
+      "score": 3,
+      "reason": "Free sign-up and a broad suite (scheduling, AI recaps, payments) are worth it, but the H1 is abstract and the benefit is not quantified in the hero.",
+      "evidence": [
+        "D10",
+        "D11",
+        "D14"
+      ]
+    },
+    {
+      "factor": "relevance",
+      "score": 4,
+      "reason": "Product-aware visitors (likely brand or direct) get a brand-first hero and a Google/Microsoft sign-up that fits Workspace/M365 users. The hero now leads with AI and a suite, not the classic scheduling link people may expect.",
+      "evidence": [
+        "D10",
+        "D12",
+        "D13",
+        "D23"
+      ]
+    },
+    {
+      "factor": "clarity",
+      "score": 3,
+      "reason": "The next step is clear (sign up), but the H1 is vague. The carousel swaps four different H2s and the page has two overlapping feature sections for the same products.",
+      "evidence": [
+        "D10",
+        "D17",
+        "D28",
+        "D42",
+        "D61"
+      ]
+    },
+    {
+      "factor": "anxiety",
+      "score": 3,
+      "reason": "'No credit card required' helps. Pricing, plan limits, security/privacy (calendar and meeting recording access) and the free-plan scope are not addressed in the captured part. Beta/New labels add maturity doubts.",
+      "evidence": [
+        "D14",
+        "D27",
+        "D32",
+        "D6"
+      ]
+    },
+    {
+      "factor": "distraction",
+      "score": 2,
+      "reason": "The hero offers three sign-up routes plus nav CTAs. Below it sits a product carousel, four tabs, accordions and many 'Learn more' links. Each leads away from sign-up.",
+      "evidence": [
+        "D12",
+        "D13",
+        "D15",
+        "D25",
+        "D30",
+        "D35",
+        "D40",
+        "D64"
+      ]
+    },
+    {
+      "factor": "urgency",
+      "score": 1,
+      "reason": "No time-bound or situational reason to act now. Only an implicit 'free' pull.",
+      "evidence": [
+        "D14",
+        "D44"
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "persona": "skeptical_first_timer",
+      "stalls": [
+        {
+          "block_id": "D10",
+          "why": "The headline does not say what the product is or who it is for."
+        },
+        {
+          "block_id": "D27",
+          "why": "Callie is labelled Beta, so the lead AI feature reads as unfinished."
+        },
+        {
+          "block_id": "D120",
+          "why": "Proof is far down the page (y≈7200+) and mostly from small-business founders. The results are not shown with context."
+        }
+      ],
+      "objections": [
+        {
+          "objection": "What is this and who is it for?",
+          "status": "partial"
+        },
+        {
+          "objection": "Is it real and trusted by others?",
+          "status": "partial"
+        },
+        {
+          "objection": "Is the AI reliable?",
+          "status": "absent"
+        }
+      ]
+    },
+    {
+      "persona": "comparison_shopper",
+      "stalls": [
+        {
+          "block_id": "D23",
+          "why": "'World's #1 scheduling tool' is a claim with no source, date or metric."
+        },
+        {
+          "block_id": "D6",
+          "why": "Pricing is only a nav link and nothing on the page shows what is free vs paid."
+        },
+        {
+          "block_id": "D75",
+          "why": "'150+ other integrations' is the only concrete differentiator, buried in an accordion."
+        }
+      ],
+      "objections": [
+        {
+          "objection": "How does it differ from other schedulers?",
+          "status": "partial"
+        },
+        {
+          "objection": "What does it cost beyond free?",
+          "status": "absent"
+        },
+        {
+          "objection": "Which integrations are supported?",
+          "status": "partial"
+        }
+      ]
+    },
+    {
+      "persona": "ready_to_buy",
+      "stalls": [
+        {
+          "block_id": "D12",
+          "why": "Sign-up is OAuth-first. The plain email option is a small underlined link and the Google/Microsoft permissions are unexplained."
+        },
+        {
+          "block_id": "D14",
+          "why": "'No credit card required' does not say which plan or limits apply after sign-up."
+        }
+      ],
+      "objections": [
+        {
+          "objection": "What happens after I click?",
+          "status": "absent"
+        },
+        {
+          "objection": "Which plan do I get?",
+          "status": "absent"
+        },
+        {
+          "objection": "Is there a fast path to sign up?",
+          "status": "answered"
+        }
+      ]
+    },
+    {
+      "persona": "mobile_skimmer",
+      "stalls": [
+        {
+          "block_id": "M15",
+          "why": "The product tab icons are small, and tab content swaps in and out; the tab icon labels are not visible."
+        },
+        {
+          "block_id": "M1",
+          "why": "The chat bubble floats over the hero card, next to the tab content."
+        },
+        {
+          "block_id": "M38",
+          "why": "The page is long (18,799px), with a text-heavy copy block before the second CTA."
+        }
+      ],
+      "objections": [
+        {
+          "objection": "Can I sign up quickly on my phone?",
+          "status": "answered"
+        },
+        {
+          "objection": "How far do I have to scroll to see proof?",
+          "status": "absent"
+        }
+      ]
+    },
+    {
+      "persona": "risk_averse_evaluator",
+      "stalls": [
+        {
+          "block_id": "D14",
+          "why": "Only 'No credit card required' is offered. There are no security, compliance, data handling or cancellation signals."
+        },
+        {
+          "block_id": "D85",
+          "why": "Callie and Notetaker handle email threads and meeting recordings, but no privacy or consent explanation is visible."
+        },
+        {
+          "block_id": "D131",
+          "why": "The testimonial gives a named company, but the claim is a generic quote with no figure to defend internally."
+        }
+      ],
+      "objections": [
+        {
+          "objection": "How is meeting and calendar data handled?",
+          "status": "absent"
+        },
+        {
+          "objection": "Security and compliance (SOC 2, GDPR)?",
+          "status": "absent"
+        },
+        {
+          "objection": "Can I cancel or downgrade?",
+          "status": "absent"
+        },
+        {
+          "objection": "Is the company legitimate?",
+          "status": "partial"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "category": "value_prop_clarity",
+      "kind": "issue",
+      "title": "The H1 'All the work around meetings, handled.' does not say what the product does or who it is for",
+      "personas": [
+        "skeptical_first_timer",
+        "comparison_shopper"
+      ],
+      "severity": "medium",
+      "reasoning": "Visitors who only half know the brand have to read the subhead and click through the product tabs to learn it is a scheduler plus AI notes and payments. The headline says 'handled' without naming the outcome (fewer back-and-forth emails, fewer no-shows). The subhead's 'busywork' and 'less effort' are also unquantified.",
+      "evidence": [
+        {
+          "block_id": "D10",
+          "viewport": "desktop",
+          "quote": "All the work around meetings, handled.",
+          "crop": "crops/F1-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D11",
+          "viewport": "desktop",
+          "quote": "get the busywork done with fewer tools and less effort.",
+          "crop": "crops/F1-2.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "kept",
+        "reason": "The H1 'All the work around meetings, handled.' in the hero is indeed vague about what the product is, and the subhead only partly clarifies it with product names via carousel tabs."
+      }
+    },
+    {
+      "id": "F2",
+      "category": "social_proof",
+      "kind": "issue",
+      "title": "Customer proof only appears at the bottom of the page (y≈7200+ on desktop), and nothing sits near the hero sign-up buttons",
+      "personas": [
+        "skeptical_first_timer",
+        "risk_averse_evaluator",
+        "mobile_skimmer"
+      ],
+      "severity": "high",
+      "reasoning": "The decision to sign up is asked for in the hero, but the first testimonials come after about seven screens. The mobile capture, covering only the first 3,376px of 18,799px, shows no proof at all. The captured proof is also mostly small founders and offers no verifiable logos or counts.",
+      "evidence": [
+        {
+          "block_id": "D14",
+          "viewport": "desktop",
+          "quote": "No credit card required",
+          "crop": "crops/F2-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D118",
+          "viewport": "desktop",
+          "quote": "Real customers. Real results.",
+          "crop": "crops/F2-2.png",
+          "valid": true
+        },
+        {
+          "block_id": "M9",
+          "viewport": "mobile",
+          "quote": "No credit card required",
+          "crop": "crops/F2-3.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "kept",
+        "reason": "The first-screen hero has only 'No credit card required' near the sign-up buttons, and the testimonials (D118 at y≈7230) are far below; the claim is true of the page."
+      }
+    },
+    {
+      "id": "F3",
+      "category": "specificity",
+      "kind": "issue",
+      "title": "The claim 'world's #1 scheduling tool' has no source or metric attached",
+      "personas": [
+        "comparison_shopper",
+        "skeptical_first_timer"
+      ],
+      "severity": "medium",
+      "reasoning": "A superlative with no source invites doubt from visitors comparing alternatives. The same block's 'easiest and most powerful' is also unsupported. Only '150+ other integrations' (D75) is concrete, and it is hidden in an accordion.",
+      "evidence": [
+        {
+          "block_id": "D23",
+          "viewport": "desktop",
+          "quote": "Book meetings with the world’s #1 scheduling tool",
+          "crop": "crops/F3-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D24",
+          "viewport": "desktop",
+          "quote": "Calendly is the easiest and most powerful way to find time to connect.",
+          "crop": "crops/F3-2.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "flagged",
+        "reason": "The 'world's #1' claim (D23) is real and unsourced, but the crops shown are of the Payments tab, not this text, and the brand is well known so the impact is subjective and minor; also the '150+' claim is not hidden in an accordion as asserted."
+      }
+    },
+    {
+      "id": "F4",
+      "category": "pricing_visibility",
+      "kind": "absence",
+      "title": "The hero says 'No credit card required' but never says what the free plan includes or where paid plans start",
+      "personas": [
+        "comparison_shopper",
+        "ready_to_buy",
+        "risk_averse_evaluator"
+      ],
+      "severity": "high",
+      "reasoning": "The page pushes Payments, Notetaker and Callie, yet nothing on the captured page says which of these are free. Visitors have to open the Pricing nav link to find out. The risk of a surprise paywall after sign-up remains.",
+      "evidence": [
+        {
+          "block_id": "D14",
+          "viewport": "desktop",
+          "quote": "Sign up with email • No credit card required",
+          "crop": "crops/F4-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D6",
+          "viewport": "desktop",
+          "quote": "Pricing",
+          "crop": "crops/F4-2.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "flagged",
+        "reason": "No plan details appear in the hero, but 'Pricing' is in the nav (D6) and 'No credit card required' is present, so the gap is partly mitigated and the surprise-paywall risk is an assumption."
+      }
+    },
+    {
+      "id": "F5",
+      "category": "trust_risk",
+      "kind": "absence",
+      "title": "No security, privacy or data-handling statement sits near the sign-up buttons or the AI/recording features",
+      "personas": [
+        "risk_averse_evaluator",
+        "skeptical_first_timer"
+      ],
+      "severity": "medium",
+      "reasoning": "Google/Microsoft sign-up means granting calendar access. Callie reads email threads and Notetaker joins calls, which raises data and consent concerns. The captured page offers no badge, policy link or explanation next to them.",
+      "evidence": [
+        {
+          "block_id": "D12",
+          "viewport": "desktop",
+          "quote": "Sign up with Google",
+          "crop": "crops/F5-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D85",
+          "viewport": "desktop",
+          "quote": "just add callie@calendly.com to the email thread",
+          "crop": "crops/F5-2.png",
+          "valid": true
+        },
+        {
+          "block_id": "M52",
+          "viewport": "mobile",
+          "quote": "Notetaker joins and takes notes",
+          "crop": "crops/F5-3.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "flagged",
+        "reason": "No security statement is visible near the sign-up buttons or the AI features, but the footer has Privacy Policy and the page capture can't confirm what happens on OAuth consent, so the concern is plausible but assumed."
+      }
+    },
+    {
+      "id": "F6",
+      "category": "visual_hierarchy_distraction",
+      "kind": "issue",
+      "title": "The hero offers three sign-up routes, a nav CTA, a four-tab carousel and a 'Learn more' link, which split attention from one action",
+      "personas": [
+        "ready_to_buy",
+        "mobile_skimmer"
+      ],
+      "severity": "medium",
+      "reasoning": "Directly under the buttons, a product carousel with different H2s and 'Learn more' links invites exploration. The plain email option is a small underlined link under two large OAuth buttons. The long page repeats the same four products in two further sections, each with more links.",
+      "evidence": [
+        {
+          "block_id": "D15",
+          "viewport": "desktop",
+          "quote": "Sign up with email",
+          "crop": "crops/F6-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D25",
+          "viewport": "desktop",
+          "quote": "Learn more",
+          "crop": "crops/F6-2.png",
+          "valid": true
+        },
+        {
+          "block_id": "D64",
+          "viewport": "desktop",
+          "quote": "Open Full control over your calendar",
+          "crop": "crops/F6-3.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "flagged",
+        "reason": "The hero does show two large OAuth buttons, a small email link and a carousel with Learn more links, but the carousel is a standard pattern, and the evidence D64 is an unrelated lower-page arrow icon, so the attention-split claim is subjective."
+      }
+    },
+    {
+      "id": "F7",
+      "category": "message_match",
+      "kind": "issue",
+      "title": "The hero promises an AI suite, but the first tab headline sells 'scheduling tool' and the Callie tab is labelled Beta",
+      "personas": [
+        "skeptical_first_timer",
+        "comparison_shopper"
+      ],
+      "severity": "low",
+      "reasoning": "The H1 sells AI, while the default tab headline reverts to the classic scheduler claim. The Beta tag on the lead AI assistant weakens confidence that the suite delivers as promised.",
+      "evidence": [
+        {
+          "block_id": "D28",
+          "viewport": "desktop",
+          "quote": "Introducing your 24/7 AI scheduling assistant",
+          "crop": "crops/F7-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D27",
+          "viewport": "desktop",
+          "quote": "Beta",
+          "crop": "crops/F7-2.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "dropped",
+        "reason": "The hero screenshot shows the default tab is Callie ('Introducing your 24/7 AI scheduling assistant'), not the classic scheduler, so the claim that the first tab reverts to the scheduler claim is contradicted."
+      }
+    },
+    {
+      "id": "F8",
+      "category": "offer",
+      "kind": "absence",
+      "title": "No time-based or situational reason to sign up now appears next to the 'Start for free' CTA",
+      "personas": [
+        "ready_to_buy",
+        "comparison_shopper"
+      ],
+      "severity": "low",
+      "reasoning": "The 'Start for free' CTA is followed by a generic paragraph. For a brand-aware audience this is acceptable, but nothing nudges them past 'later'. For example, the page does not show the time to set up or a first-use outcome.",
+      "evidence": [
+        {
+          "block_id": "D44",
+          "viewport": "desktop",
+          "quote": "Start for free",
+          "crop": "crops/F8-1.png",
+          "valid": true
+        },
+        {
+          "block_id": "D43",
+          "viewport": "desktop",
+          "quote": "so you have more space for what matters.",
+          "crop": "crops/F8-2.png",
+          "valid": true
+        }
+      ],
+      "check": {
+        "deterministic": "pass",
+        "verdict": "dropped",
+        "reason": "A generic 'add urgency' suggestion for a brand-aware audience, as the finding itself concedes, and 'Start for free' (D44) next to 'No credit card required' in the hero already lowers the barrier, so it isn't tied to a real page problem."
+      }
+    }
+  ],
+  "unverifiable": [
+    {
+      "what": "Traffic source",
+      "why": "None was supplied.",
+      "assumption": "Mostly direct/brand and branded organic visitors who are product-aware."
+    },
+    {
+      "what": "Pricing and free-plan limits",
+      "why": "Pricing is behind the nav link and was not captured.",
+      "assumption": "A free plan exists with limits, and some features (Payments, Notetaker) may need paid tiers."
+    },
+    {
+      "what": "What happens after clicking Google/Microsoft/email sign-up",
+      "why": "The flow is not part of the capture.",
+      "assumption": "A standard OAuth consent followed by onboarding. Permissions and plan are not shown beforehand."
+    },
+    {
+      "what": "Content below the capture",
+      "why": "Desktop stops at y=8100 of 11306 and mobile at y=3376 of 18799, so footer, FAQ, security or logo bars may exist.",
+      "assumption": "Security/trust and extra proof may exist further down, but not near the hero CTA."
+    },
+    {
+      "what": "Testimonial carousel content and A/B variants",
+      "why": "Only one slide of the carousel was visible, and tab and variant states were not tested.",
+      "assumption": "The carousel shows similar small-business stories."
+    },
+    {
+      "what": "Real-user speed",
+      "why": "One local lab visit with mobile emulation (LCP 724 ms, CLS 0.0015).",
+      "assumption": "Speed is not a conversion problem; real-world data may differ."
+    },
+    {
+      "what": "Consent banner effect",
+      "why": "The banner was present but dismissed before capture.",
+      "assumption": "It did not block the hero for real visitors beyond a brief interruption."
+    }
+  ],
+  "experiments": [
+    {
+      "id": "X1",
+      "finding_id": "F1",
+      "hypothesis": "If we change the hero H1 \"All the work around meetings, handled.\" to a specific outcome headline naming scheduling, AI notes and follow-ups, then hero sign-up click-through will increase for skeptical first-timers and comparison shoppers, because the current H1 and its subhead (\"get the busywork done with fewer tools and less effort\") never say what the product does or who it is for, so visitors must read the tabs to find out.",
+      "change": {
+        "from": "H1: \"All the work around meetings, handled.\" / Subhead: \"From AI-powered scheduling to automated meeting recaps and follow-ups, get the busywork done with fewer tools and less effort.\"",
+        "to": "H1 names the three jobs (schedule, record, follow up) and the audience; subhead states the outcome in plain words without 'busywork' or 'less effort'."
+      },
+      "suggested_copy": "H1: Schedule it. Record it. Follow up on it. All in one place.\nSubhead: Calendly books your meetings, takes the notes and sends the follow-ups, so you stop chasing people over email and start spending your time with clients.",
+      "primary_metric": "hero sign-up click-through (Google, Microsoft and email buttons combined)",
+      "guardrail_metric": "sign-up completion rate (activated accounts per click)",
+      "feasibility": "ab_ok",
+      "ice": {
+        "impact": 6,
+        "confidence": 5,
+        "ease": 9,
+        "score": 6.67,
+        "rationale": {
+          "impact": "Removes a real clarity doubt for half-aware visitors, but the brand is well known so the main persona may already understand it.",
+          "confidence": "base 3; +1 evidence verified and kept by self-check; +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Hero headline and subhead copy swap in the CMS."
+        }
+      },
+      "flagged": false
+    },
+    {
+      "id": "X2",
+      "finding_id": "F2",
+      "hypothesis": "If we add a proof strip directly under the hero sign-up buttons (a short customer quote and customer-count or logo row, replacing nothing above the fold), then hero sign-up click-through will increase for skeptical first-timers, risk-averse evaluators and mobile skimmers, because the first proof (\"Real customers. Real results.\") sits about seven screens down and the mobile capture shows none near \"No credit card required\".",
+      "change": {
+        "from": "Hero ends with \"No credit card required\"; first customer proof appears at \"Real customers. Real results.\" near the bottom of the page.",
+        "to": "Hero shows one real customer quote with name, role and company, plus a verified customer logo row or count taken from existing company data, directly beneath the sign-up buttons on desktop and mobile."
+      },
+      "suggested_copy": null,
+      "primary_metric": "hero sign-up click-through",
+      "guardrail_metric": "bounce rate",
+      "feasibility": "ab_ok",
+      "ice": {
+        "impact": 7,
+        "confidence": 5,
+        "ease": 6,
+        "score": 6.0,
+        "rationale": {
+          "impact": "Puts proof at the point of decision for three personas; the evidence says the gap is real and verified.",
+          "confidence": "base 3; +1 evidence verified and kept by self-check; +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Needs a hero layout change and design on desktop and mobile; the testimonials already exist, but logos or counts must be sourced and approved."
+        }
+      },
+      "flagged": false
+    },
+    {
+      "id": "X3",
+      "finding_id": "F4",
+      "hypothesis": "If we change \"Sign up with email • No credit card required\" to a line that states what the free plan includes and where paid plans start, with a link to Pricing, then hero sign-up click-through will increase for comparison shoppers, ready-to-buy visitors and risk-averse evaluators, because the page promotes Payments, Notetaker and Callie without saying which are free, leaving a possible paywall surprise.",
+      "change": {
+        "from": "\"Sign up with email • No credit card required\"",
+        "to": "A one-line free-plan summary under the buttons plus a \"See what's free\" link to Pricing."
+      },
+      "suggested_copy": "Free plan: [what the team confirms is included, e.g. unlimited scheduling links]. Paid plans from [price]/month. No credit card required. See plans",
+      "primary_metric": "hero sign-up click-through",
+      "guardrail_metric": "paid plan conversion rate within the trial period",
+      "feasibility": "ab_ok",
+      "ice": {
+        "impact": 6,
+        "confidence": 4,
+        "ease": 7,
+        "score": 5.67,
+        "rationale": {
+          "impact": "Removes a real doubt for comparison shoppers and buyers, but the review flagged it as partly mitigated by the Pricing nav link.",
+          "confidence": "base 3; +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Copy is quick, but the exact free-plan scope and price to show need a product or pricing decision first; bracketed text is a placeholder."
+        }
+      },
+      "flagged": true
+    },
+    {
+      "id": "X4",
+      "finding_id": "F5",
+      "hypothesis": "If we add a short trust line with a link to the privacy and security page next to the \"Sign up with Google\" and Microsoft buttons, then hero sign-up click-through on the OAuth buttons will increase for risk-averse evaluators, because sign-up means granting calendar access and Callie and Notetaker handle email and meetings, yet no privacy statement appears next to them.",
+      "change": {
+        "from": "Sign-up buttons with only \"No credit card required\" below them; no data-handling statement near the buttons or the AI features.",
+        "to": "A trust line under the buttons that says what access is requested and links to the privacy and security page."
+      },
+      "suggested_copy": "We only use your calendar to find times and never share your data. Read how we protect it",
+      "primary_metric": "hero OAuth sign-up click-through",
+      "guardrail_metric": "bounce rate",
+      "feasibility": "qualitative_only",
+      "ice": {
+        "impact": 4,
+        "confidence": 4,
+        "ease": 8,
+        "score": 5.33,
+        "rationale": {
+          "impact": "Matters mainly to a secondary, risk-averse group; the concern is plausible but assumed, not shown by the evidence.",
+          "confidence": "base 3; +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Single line of copy and a link in the hero; the claim wording needs legal or security approval first."
+        }
+      },
+      "flagged": true
+    },
+    {
+      "id": "X5",
+      "finding_id": "F3",
+      "hypothesis": "If we change \"Book meetings with the world’s #1 scheduling tool\" and \"Calendly is the easiest and most powerful way to find time to connect.\" to claims backed by a concrete, sourced number, then sign-up click-through will increase for comparison shoppers, because an unsourced superlative invites doubt while concrete figures like \"150+ integrations\" are more credible.",
+      "change": {
+        "from": "\"Book meetings with the world’s #1 scheduling tool\" and \"Calendly is the easiest and most powerful way to find time to connect.\"",
+        "to": "Headline and supporting line using a verifiable fact (customer count, integrations, or a named review-site rating) with its source linked."
+      },
+      "suggested_copy": "Book meetings with the scheduling tool that connects to 150+ apps you already use.\nRated [X]/5 by [N] users on [review site, with link].",
+      "primary_metric": "click-through on the section's sign-up CTA",
+      "guardrail_metric": "bounce rate",
+      "feasibility": "bold_change_only",
+      "ice": {
+        "impact": 3,
+        "confidence": 4,
+        "ease": 8,
+        "score": 5.0,
+        "rationale": {
+          "impact": "The review flagged this as minor and subjective; the brand is well known so the doubt is small and a copy change in one section is unlikely to move sign-ups.",
+          "confidence": "base 3; +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Copy change, but the real figures (rating, counts) must be confirmed by the team before use; placeholders in brackets must be replaced."
+        }
+      },
+      "flagged": true
+    },
+    {
+      "id": "X6",
+      "finding_id": "F6",
+      "hypothesis": "If we change the hero so the email sign-up is a full-width equal button and the product carousel moves below a single clear CTA group, then hero sign-up click-through will increase for ready-to-buy visitors and mobile skimmers, because the hero currently shows two large OAuth buttons, a small underlined \"Sign up with email\" link and \"Learn more\" links that pull attention away from one action.",
+      "change": {
+        "from": "Two large OAuth buttons, a small underlined \"Sign up with email\" link, and a four-tab carousel with \"Learn more\" links directly beneath.",
+        "to": "One CTA group with three equal-weight sign-up options, with the carousel pushed below the fold and its \"Learn more\" links demoted."
+      },
+      "suggested_copy": null,
+      "primary_metric": "hero sign-up click-through",
+      "guardrail_metric": "scroll depth to the product sections",
+      "feasibility": "bold_change_only",
+      "ice": {
+        "impact": 4,
+        "confidence": 5,
+        "ease": 6,
+        "score": 5.0,
+        "rationale": {
+          "impact": "The attention-split claim is subjective since carousels are a standard pattern; it may help ready-to-buy visitors but the effect is probably small.",
+          "confidence": "base 3; +1 matches weak LIFT factor (distraction); +1 raised for 2+ personas; capped at 6: no traffic data",
+          "ease": "Layout change in the hero needing design and front-end work on desktop and mobile."
+        }
+      },
+      "flagged": true
+    }
+  ],
+  "top3": [
+    {
+      "experiment_id": "X2",
+      "why": "Highest impact with the strongest evidence (a kept finding): proof is about seven screens below the hero ask and absent on mobile; the testimonials already exist, so effort is moderate."
+    },
+    {
+      "experiment_id": "X1",
+      "why": "A kept finding and a copy-only change in the CMS, so it is the cheapest test with a clear mechanism on the main hero decision."
+    },
+    {
+      "experiment_id": "X3",
+      "why": "Pricing uncertainty affects comparison shoppers and buyers. The evidence is flagged rather than kept, but the test is a one-line change once the team decides what to show about the free plan."
+    }
+  ],
+  "summary": "The page is for product-aware professionals who run on client meetings (sales, consultants, recruiters, freelancers), mostly arriving by brand or direct search and signing up free with Google or Microsoft. The biggest problems are that the hero H1 \"All the work around meetings, handled.\" is vague, and that customer proof sits about seven screens below the sign-up buttons and is missing on the mobile capture. The free plan's scope and paid pricing are also unclear next to \"No credit card required\". Test first the hero headline (F1), the proof strip near the hero buttons (F2) and the free-plan line (F4); all three target the same hero sign-up click-through, so run them one after another or as a factorial test to keep results clean. F3, F5 and F6 are flagged, subjective or secondary, so test them later.",
+  "cost": {
+    "total_usd_equivalent": 0.4097,
+    "calls": [
+      {
+        "step": "understand",
+        "model": "claude-sonnet-5-5",
+        "seconds": 43.3,
+        "input_tokens": 18246,
+        "output_tokens": 1054,
+        "usd": 0.0658
+      },
+      {
+        "step": "analyse",
+        "model": "claude-sonnet-5-5",
+        "seconds": 66.53,
+        "input_tokens": 33157,
+        "output_tokens": 4486,
+        "usd": 0.1574
+      },
+      {
+        "step": "check",
+        "model": "claude-sonnet-5-5",
+        "seconds": 11.14,
+        "input_tokens": 25473,
+        "output_tokens": 834,
+        "usd": 0.097
+      },
+      {
+        "step": "hypotheses",
+        "model": "claude-sonnet-5-5",
+        "seconds": 26.65,
+        "input_tokens": 18188,
+        "output_tokens": 3320,
+        "usd": 0.0895
+      }
+    ]
+  }
+}

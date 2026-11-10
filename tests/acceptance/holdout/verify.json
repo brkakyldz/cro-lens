@@ -1,0 +1,23 @@
+{
+  "command": "uv run --project %CRO_LENS_REPO% pytest holdout --junitxml=holdout/report.xml -p no:cacheprovider",
+  "format": "junit",
+  "report": "holdout/report.xml",
+  "expected": [
+    "H01",
+    "H02",
+    "H03",
+    "H04",
+    "H05",
+    "H06",
+    "H07",
+    "H08",
+    "H09",
+    "H12",
+    "H13",
+    "H14",
+    "H15"
+  ],
+  "runs": 3,
+  "perScenario": 2,
+  "overall": 0.9
+}

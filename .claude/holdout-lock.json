@@ -1,0 +1,4 @@
+{
+  "paths": ["tests/acceptance/holdout/"],
+  "reason": "held-out acceptance scenarios are written by an author outside the builder's context (scenario-author: a fresh subagent, not a fork) and landed by the owner, never by the implementing agent"
+}

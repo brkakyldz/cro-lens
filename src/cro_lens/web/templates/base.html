@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}cro-lens{% endblock %}</title>
+<link rel="preload" href="/static/fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/static/fonts/inter-tight.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/static/css/app.css?v={{ asset_v }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="wordmark" href="/"><span class="wordmark-lens" aria-hidden="true"></span>cro-lens</a>
+  <nav class="bar-nav" aria-label="Sections">
+    <a href="/" {% if nav == 'start' %}aria-current="page"{% endif %}>New audit</a>
+    <a href="/eval" {% if nav == 'eval' %}aria-current="page"{% endif %}>Your eval</a>
+  </nav>
+</header>
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+{% block scripts %}{% endblock %}
+</body>
+</html>

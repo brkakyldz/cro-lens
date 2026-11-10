@@ -1,0 +1,5 @@
+{
+  "command": "uv run pytest -q",
+  "timeoutMs": 600000,
+  "label": "cro-lens offline suite"
+}
